@@ -1,0 +1,20 @@
+﻿@model List<Category>
+
+<div class="cate-area">
+    <div>
+        <span class="name">分类</span>
+        <ul>
+           @foreach (var item in Model)
+           {
+            <li><a asp-action="CategoryIndex" asp-controller="Book" asp-route-id="@item.Id" asp-route-pagenum="">@item.Name</a></li>
+           }
+        </ul>
+    </div>
+    <div>
+        <span class="name">频道</span>
+        <ul>
+            <li><a asp-action="GenderIndex" asp-controller="Book" asp-route-gender="Boy" asp-route-pagenum="">男频</a></li>
+            <li><a asp-action="GenderIndex" asp-controller="Book" asp-route-gender="Girl" asp-route-pagenum="">女频</a></li>
+        </ul>
+    </div>
+</div>

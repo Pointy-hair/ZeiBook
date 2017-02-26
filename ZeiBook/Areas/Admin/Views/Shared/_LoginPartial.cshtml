@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using ZeiBook.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <ul class="navbar-nav ml-auto">
+        <li><a asp-area="" asp-controller="Manage" asp-action="Index" class="nav-link">Hello @User.Identity.Name</a></li>
+        <li>
+            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                <button type="submit" class="btn btn-outline-info">Log off</button>
+            </form>
+        </li>
+    </ul>
+}
+else
+{
+    <ul class="navbar-nav ml-auto">
+        <li><a asp-area="" asp-controller="Account" asp-action="Login" class="nav-link">Log in</a></li>
+    </ul>
+}

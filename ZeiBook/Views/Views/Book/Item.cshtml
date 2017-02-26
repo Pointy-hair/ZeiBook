@@ -1,0 +1,89 @@
+﻿@model Book
+
+@{ 
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="center-area row">
+    <div class="article col-md-8 col-lg-9">
+        <h3 class="title">《@Model.Name》txt全集</h3>
+        <div class="container-fluid info-list row">
+            <div class="col-3">
+                <img class="cover" src="@(Model.CoverPath??"/images/pic01.jpg")">
+            </div>
+            <div class="col-9">
+                <div>
+                    <span>小说大小：</span>
+                    <span>@Html.DisplayFileLength(Model.FileLength)</span>
+                </div>
+                <div>
+                    <span>小说分类：</span>
+                    <span>@Model.Category.Name</span>
+                </div>
+                <div>
+                    <span>小说语言：</span>
+                    <span>简体中文</span>
+                </div>
+                <div>
+                    <span>更新时间：</span>
+                    <span>@Model.UploadTime</span>
+                </div>
+                <div>
+                    <span>是否全集：</span>
+                    <span>全集</span>
+                </div>
+                <div>
+                    <span>书籍作者：</span>
+                    <span>@Model.Author</span>
+                </div>
+                <div>
+                    <span>下载数量：</span>
+                    <span>@Model.DownloadTime</span>
+                </div>
+            </div>
+        </div>
+        <div class="box-off">
+        </div>
+        <div class="content">
+            @Html.Raw(Model.Description)
+        </div>
+        <div class="box-off">
+        </div>
+        <div>
+            <ul class="download-url-list">
+                <li>
+                    <a asp-action="Down" asp-route-id="@Model.Id">电信高速下载</a>
+                </li>
+                <li>
+                    <a asp-action="Down" asp-route-id="@Model.Id">联通高速下载</a>
+                </li>
+                <li>
+                    <a asp-action="Down" asp-route-id="@Model.Id">本地高速下载</a>
+                </li>
+                <li>
+                    <a asp-action="Down" asp-route-id="@Model.Id">本地高速下载2</a>
+                </li>
+            </ul>
+        </div>
+        <div class="box-off">
+        </div>
+    </div>
+    <div class="col-md-4 col-lg-3">
+        <dl class="box">
+            <dt>点击排行</dt>
+            <dd>
+                <ul>
+                    <li>
+                        <a href="#">《智能主脑的异世之旅》txt全集</a>
+                    </li>
+                    <li>
+                        <a href="#">《智能主脑的异世之旅》txt全集</a>
+                    </li>
+                    <li>
+                        <a href="#">《智能主脑的异世之旅》txt全集</a>
+                    </li>
+                </ul>
+            </dd>
+        </dl>
+    </div>
+</div>

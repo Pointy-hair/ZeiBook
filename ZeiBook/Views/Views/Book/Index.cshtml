@@ -1,0 +1,54 @@
+﻿@model BookIndexViewModel
+@{
+    ViewBag.Title = "Books";
+}
+
+@await Component.InvokeAsync("Category")
+<div class="row">
+    <div class="col-md-9">
+        <ul class="bookList">
+            @foreach (var item in Model.Books)
+            {
+            <li>
+                <div class="bookImage">
+                    <a asp-action="Item" asp-controller="Book" asp-route-id="@item.Id">
+                        <img src="@(item.CoverPath??"/images/pic01.jpg")">
+                    </a>
+                </div>
+                <div class="bookDiv">
+                    <h5><a asp-action="Item" asp-route-id="@item.Id">《@item.Name》txt全集</a></h5>
+                    <div class="bookInfo">
+                        <span>上传日期：@item.UploadTime</span>
+                        <span>作者：@item.Author</span>
+                        <span>大小：@Html.DisplayFileLength(item.FileLength)</span>
+                        <span>下载次数：@item.DownloadTime</span>
+                    </div>
+                    <p class="intro">
+                        @Html.Raw(item.Description)
+                    </p>
+                </div>
+            </li>
+            }
+        </ul>
+        @Html.Partial("_Page",Model.PageOption)
+    </div>
+    <div class="col-md-3">
+        <dl class="box1">
+            <dt>点击排行</dt>
+            <dd>
+                <ul>
+                    <li>
+                        <a href="#">《智能主脑的异世之旅》txt全集</a>
+                    </li>
+                    <li>
+                        <a href="#">《智能主脑的异世之旅》txt全集</a>
+                    </li>
+                    <li>
+                        <a href="#">《智能主脑的异世之旅》txt全集</a>
+                    </li>
+                </ul>
+            </dd>
+        </dl>
+    </div>
+</div>
+

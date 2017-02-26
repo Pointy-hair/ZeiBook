@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - ZeiBook</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap-grid.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet"  asp-append-version="true" />
+    @RenderSection("Styles", false)
+</head>
+<body>
+    <div class="body-content container">
+        <header class="header">
+            <div class="brand">
+            </div>
+            <form asp-action="Index" asp-controller="Search" class="search-form" method="get">
+                <input type="text" name="keyword" id="keyword">
+                <button type="submit">搜索</button>
+            </form>
+        </header>
+        <div class="clearfx"></div>
+        <div class="nav">
+            <ul>
+                <li><a asp-action="Index" asp-controller="Home">贼吧网首页</a></li>
+                <li><a asp-action="Index" asp-controller="Book" asp-route-pagenum="">电子书</a></li>
+                <li><a href="#">邪恶漫画</a></li>
+                <li><a href="#">网友留言</a></li>
+            </ul>
+        </div>
+        @RenderBody()
+        <hr />
+        <div class="footer">
+            <p class="powerd">
+                powered by Naergaga &copy; 2017
+            </p>
+            <p class="copryright">本站为非营利性网站，作品版权属于原作者，仅为个人学习、研究或者欣赏使用。所收录的资源均来自于互联网各大网站及其他论坛用户分享，本站只提供web页面服务，并不提供相关资源存储、也不参与其录制、上传等服务。</p>
+        </div>
+    </div>
+    @RenderSection("Scripts", false)
+</body>
+</html>
