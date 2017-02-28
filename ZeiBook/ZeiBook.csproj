@@ -13,28 +13,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="wwwroot\bookCover\17\02\22\63bf353388a04e61b81f1b5ae0fda9ba.png" />
-    <Content Include="wwwroot\bookCover\17\02\22\7e346c31b223471a86a183e2cab40e95.png" />
-    <Content Include="wwwroot\bookCover\17\02\22\a7c7f3eeb9f74e6ea9254523ded596fa.png" />
-    <Content Include="wwwroot\bookCover\17\02\22\c6943559518e493a88dbb16cc165855e.png" />
-    <Content Include="wwwroot\bookCover\17\02\22\df68b21dfac24be68b90339e3cc40fcc.png" />
-    <Content Include="wwwroot\bookCover\17\02\22\e34a08b9b93c4b25a3de931f70280d7d.png" />
-    <Content Include="wwwroot\bookCover\17\02\22\f543c1096c1e434dae666168a3b3a0c2.png" />
-    <Content Include="wwwroot\bookCover\17\02\23\aad6c05e2dee4161bcf94a754c43a2f0.png" />
-    <Content Include="wwwroot\bookCover\17\02\23\fe2c813d9eb34103b8ffc85407b350ce.png" />
-    <Content Include="wwwroot\bookCover\17\02\25\223331b66a6044a68e9358680b05abac.png" />
-    <Content Include="wwwroot\bookCover\17\02\25\61b586e94bd7410fbbc8750dc6531c77.png" />
-    <Content Include="wwwroot\bookCover\17\02\25\769479a0f004493aa566371f8f70a4a6.png" />
-    <Content Include="wwwroot\bookCover\17\02\25\9578a067b62e4abe95d4301c897ce453.png" />
-    <Content Include="wwwroot\bookCover\17\02\25\992a6c1ac88849729b32d1545aff0869.png" />
-    <Content Include="wwwroot\bookCover\17\02\25\9ed355d78e1344a5b761362dce7c6a3e.png" />
-    <Content Include="wwwroot\bookCover\17\02\25\a78528b71615456589b966d5714e4f40.png" />
-    <Content Include="wwwroot\bookCover\17\02\25\d091d6cd3f1d4c698be51fe31ea63543.png" />
-    <Content Include="wwwroot\book\17\02\19\2f0ab17ee4ca44bb8afae8e0af39e75a.txt" />
-    <Content Include="wwwroot\book\17\02\19\c1f71523703049969533aee720cd88a3.txt" />
-    <Content Include="wwwroot\book\17\02\21\083c8ccbeddf4c5abb2a4ac129de0716.txt" />
-    <Content Include="wwwroot\book\17\02\21\482e8c1c47f04d9bac1e26da5b056063.txt" />
-    <Content Include="wwwroot\book\17\02\22\5deb57e7edad442e870cc317e97c7456.txt" />
+    <Compile Remove="wwwroot\bookCover\**" />
+    <Compile Remove="wwwroot\book\**" />
+    <Content Remove="wwwroot\bookCover\**" />
+    <Content Remove="wwwroot\book\**" />
+    <EmbeddedResource Remove="wwwroot\bookCover\**" />
+    <EmbeddedResource Remove="wwwroot\book\**" />
+    <None Remove="wwwroot\bookCover\**" />
+    <None Remove="wwwroot\book\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="wwwroot\css\site.css" />
     <Content Include="wwwroot\css\site.map" />
     <Content Include="wwwroot\css\site.min.css" />
@@ -565,6 +554,113 @@
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0-msbuild3-final" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0-msbuild3-final" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0-msbuild3-final" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Views\Account\AccessDenied.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Account\ConfirmEmail.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Account\ExternalLoginConfirmation.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Account\ExternalLoginFailure.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Account\ForgotPassword.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Account\ForgotPasswordConfirmation.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Account\Lockout.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Account\Login.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Account\Register.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Account\ResetPassword.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Account\ResetPasswordConfirmation.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Account\SendCode.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Account\VerifyCode.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Book\CategoryIndex.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Book\GenderIndex.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Book\Index.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Book\Item.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Home\Index.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Manage\AddPhoneNumber.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Manage\ChangePassword.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Manage\Index.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Manage\ManageLogins.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Manage\SetPassword.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Manage\VerifyPhoneNumber.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Search\Index.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Components\Category\Default.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Error.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\_Layout.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\_Layout1.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\_LayoutBlank.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\_LoginPartial.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\_Page.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\_ValidationScriptsPartial.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\_ViewImports.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\_ViewStart.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
