@@ -36,9 +36,9 @@ namespace ZeiBook.Actions.Rank
         /// </summary>
         /// <param name="rankName"></param>
         /// <returns>是否有错</returns>
-        public bool BuildRankResult(string rankName)
+        public bool BuildRankResult(int rankId)
         {
-            var item = _context.BookRanks.SingleOrDefault(t => t.Name == rankName);
+            var item = _context.BookRanks.SingleOrDefault(t => t.Id == rankId);
             if (item == null)
             {
                 return false;

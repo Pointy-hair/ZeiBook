@@ -9,9 +9,10 @@ using ZeiBook.Models;
 namespace ZeiBook.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170301002024_BookRank")]
+    partial class BookRank
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.2")
@@ -232,9 +233,9 @@ namespace ZeiBook.Data.Migrations
 
                     b.Property<string>("CornValue");
 
-                    b.Property<long>("DurationTicks");
-
                     b.Property<bool>("EnableTask");
+
+                    b.Property<TimeSpan>("Interval");
 
                     b.Property<string>("Name");
 

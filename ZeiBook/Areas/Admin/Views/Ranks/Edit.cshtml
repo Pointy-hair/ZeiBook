@@ -1,0 +1,57 @@
+﻿@model BookRank
+
+@{
+    ViewData["Title"] = "Edit";
+    var cateList = (List<Category>)ViewData["cateList"];
+}
+
+<h2>修改</h2>
+
+<form asp-action="Edit" class="col-md-9">
+    <div>
+        <h4>Rank</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <label asp-for="Name" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" asp-for="Interval"></label>
+            <div class="col-sm-10">
+                <input asp-for="Interval" class="form-control"/>
+                <span asp-validation-for="Interval" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" asp-for="CornValue"></label>
+            <div class="col-sm-10">
+                <input asp-for="CornValue" class="form-control"/>
+                <span asp-validation-for="CornValue" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" asp-for="EnableTask"></label>
+            <div class="col-sm-10">
+                <input asp-for="EnableTask" type="checkbox" />
+                <span asp-validation-for="EnableTask" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="offset-sm-2 col-sm-10">
+                <input type="submit" value="修改" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
