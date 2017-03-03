@@ -33,22 +33,7 @@
         @Html.Partial("_Page",Model.PageOption)
     </div>
     <div class="col-md-3">
-        <dl class="box1">
-            <dt>点击排行</dt>
-            <dd>
-                <ul>
-                    <li>
-                        <a href="#">《智能主脑的异世之旅》txt全集</a>
-                    </li>
-                    <li>
-                        <a href="#">《智能主脑的异世之旅》txt全集</a>
-                    </li>
-                    <li>
-                        <a href="#">《智能主脑的异世之旅》txt全集</a>
-                    </li>
-                </ul>
-            </dd>
-        </dl>
+        @await Component.InvokeAsync("Rank")
     </div>
 </div>
 

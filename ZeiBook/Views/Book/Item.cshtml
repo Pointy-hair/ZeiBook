@@ -69,21 +69,6 @@
         </div>
     </div>
     <div class="col-md-4 col-lg-3">
-        <dl class="box">
-            <dt>点击排行</dt>
-            <dd>
-                <ul>
-                    <li>
-                        <a href="#">《智能主脑的异世之旅》txt全集</a>
-                    </li>
-                    <li>
-                        <a href="#">《智能主脑的异世之旅》txt全集</a>
-                    </li>
-                    <li>
-                        <a href="#">《智能主脑的异世之旅》txt全集</a>
-                    </li>
-                </ul>
-            </dd>
-        </dl>
+        @await Component.InvokeAsync("Rank", new { categoryId = Model.Category.Id })
     </div>
 </div>

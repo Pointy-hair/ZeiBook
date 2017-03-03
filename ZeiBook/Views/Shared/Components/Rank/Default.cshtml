@@ -1,0 +1,15 @@
+﻿@model List<Book>
+
+<dl class="box1">
+    <dt>下载排行</dt>
+    <dd>
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li>
+                    <a asp-action="Item" asp-contoller="Book" asp-route-id="@item.Id">《@item.Name》txt全集</a>
+                </li>
+            }
+        </ul>
+    </dd>
+</dl>
