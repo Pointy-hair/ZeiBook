@@ -1,11 +1,12 @@
 ﻿@model PageOption
 
 @{
-    var previous = Model.PageNum - 1;
-    var next = Model.PageNum + 1;
+    var pageNum = Model.PageNum;
     var length = 10;
-    var renderStart = (previous - 1) / length * length + 1;
-    var renderEnd = ((previous - 1) / length + 1) * length;
+    var renderStart = (pageNum - 1) / length * length + 1;
+    var renderEnd = ((pageNum - 1) / length + 1) * length;
+    var previous = renderStart - length;
+    var next = renderEnd + length;
     if (Model.PageCount < renderEnd)
     {
         renderEnd = Model.PageCount;
@@ -18,7 +19,7 @@
             @if (previous >= 1)
             {
                 <li>
-                    <a asp-route-pagenum="@(Model.PageNum-1)">&laquo;</a>
+                    <a asp-route-pagenum="@previous">&laquo;</a>
                 </li>
             }
             else
@@ -36,7 +37,7 @@
             @if (next <= Model.PageCount)
             {
                 <li>
-                    <a asp-route-pagenum="@(Model.PageNum+1)">&raquo;</a>
+                    <a asp-route-pagenum="@next">&raquo;</a>
                 </li>
             }
             else

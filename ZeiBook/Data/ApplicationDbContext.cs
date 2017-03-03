@@ -20,6 +20,7 @@ namespace ZeiBook.Data
             base.OnModelCreating(builder);
             builder.Entity<Category>().HasAlternateKey(c => c.Name);
             builder.Entity<BookRankResultItem>().HasKey(t => new { t.BookRankId, t.BookId });
+            builder.Entity<Book>().HasAlternateKey(t=>new { t.Author,t.Name});
         }
 
         public DbSet<Book> Books { get; set; }
