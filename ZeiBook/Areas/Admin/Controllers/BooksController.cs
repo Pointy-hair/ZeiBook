@@ -10,6 +10,8 @@ using ZeiBook.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using ZeiBook.Areas.Admin.Actions.Books;
+using Microsoft.AspNetCore.Routing;
+using ZeiBook.Models.PageViewModels;
 
 namespace ZeiBook.Areas.Admin.Controllers
 {
@@ -25,9 +27,13 @@ namespace ZeiBook.Areas.Admin.Controllers
         }
 
         // GET: Admin/Books
-        public async Task<IActionResult> Index()
+        [HttpGet("Admin/Books",Order =1)]
+        [HttpGet("Admin/Books/p{pageNum}", Order =0)]
+        public async Task<IActionResult> Index(int? pageNum, string bookName, [FromServices]IndexAction action)
         {
-            return View(await _context.Books.Include(t => t.Category).ToListAsync());
+            
+            var model = await action.GetViewModelAsync(pageNum??1, bookName);
+            return View(model);
         }
 
         // GET: Admin/Books/Details/5
@@ -60,12 +66,16 @@ namespace ZeiBook.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Author,CategoryId,Description,Gender,UploadTime")] Book book,
+        public async Task<IActionResult> Create([Bind("Id,Name,Author,CategoryId,Description,Gender,UploadTime")] BookItemViewModel book,
             IFormFile bookFile,
             [FromServices]CreateAction createAction)
         {
             if (ModelState.IsValid)
             {
+                //authorId
+                var authorItem = GetAuthor(book.Author);
+                book.AuthorId = authorItem.Id;
+
                 var path = createAction.SaveFile(bookFile);
                 book.Description = createAction.GetHtmlDescription(book.Description);
                 book.UploadTime = DateTime.Now;
@@ -106,7 +116,7 @@ namespace ZeiBook.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Author,CategoryId,Gender,Description")] Book book,
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Author,CategoryId,Gender,Description")] BookItemViewModel book,
             IFormFile bookFile,
             [FromServices]CreateAction createAction)
         {
@@ -123,7 +133,8 @@ namespace ZeiBook.Areas.Admin.Controllers
                     item.Name = book.Name;
                     item.CategoryId = book.CategoryId;
                     item.Gender = book.Gender;
-                    item.Author = book.Author;
+                    var authorItem = GetAuthor(book.Author);
+                    item.AuthorId = authorItem.Id;
                     item.Description = book.Description;
 
                     var path = createAction.SaveFile(bookFile);
@@ -152,6 +163,7 @@ namespace ZeiBook.Areas.Admin.Controllers
             return RedirectToAction("Edit", new { id = id });
         }
 
+       
         // GET: Admin/Books/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -185,5 +197,18 @@ namespace ZeiBook.Areas.Admin.Controllers
         {
             return _context.Books.Any(e => e.Id == id);
         }
+
+        private Author GetAuthor(string author)
+        {
+            var authorItem = _context.Authors.SingleOrDefault(t => t.Name == author);
+            if (authorItem == null)
+            {
+                authorItem = new Author { Name = author };
+                _context.Add(authorItem);
+                _context.SaveChanges();
+            }
+            return authorItem;
+        }
+
     }
 }

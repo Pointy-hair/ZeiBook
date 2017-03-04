@@ -9,9 +9,10 @@ using ZeiBook.Models;
 namespace ZeiBook.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170303065000_BookAuthor")]
+    partial class BookAuthor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.2")
@@ -183,8 +184,7 @@ namespace ZeiBook.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
+                    b.HasAlternateKey("Name");
 
                     b.ToTable("Authors");
                 });
@@ -193,6 +193,9 @@ namespace ZeiBook.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Author")
+                        .IsRequired();
 
                     b.Property<int?>("AuthorId");
 
@@ -217,12 +220,11 @@ namespace ZeiBook.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasAlternateKey("Author", "Name");
+
                     b.HasIndex("AuthorId");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("AuthorId", "Name")
-                        .IsUnique();
 
                     b.ToTable("Books");
                 });
@@ -290,8 +292,7 @@ namespace ZeiBook.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
+                    b.HasAlternateKey("Name");
 
                     b.ToTable("Categories");
                 });

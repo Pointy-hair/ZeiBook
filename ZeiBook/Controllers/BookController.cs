@@ -36,7 +36,7 @@ namespace ZeiBook.Controllers
 
         public IActionResult Item(int id)
         {
-            var item = _context.Books.Include(t => t.Category).SingleOrDefault(t => t.Id == id);
+            var item = _context.Books.Include(t => t.Category).Include(t => t.Writer).SingleOrDefault(t => t.Id == id);
             if (item == null)
             {
                 return NotFound();

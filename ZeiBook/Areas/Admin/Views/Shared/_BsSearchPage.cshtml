@@ -1,0 +1,56 @@
+﻿@model ZeiBook.Models.Utils.SearchPageOption
+
+@{
+    var pageNum = Model.PageNum;
+    var length = 10;
+    var renderStart = (pageNum - 1) / length * length + 1;
+    var renderEnd = ((pageNum - 1) / length + 1) * length;
+    var previous = renderStart - length;
+    var next = renderEnd + length;
+    if (Model.PageCount < renderEnd)
+    {
+        renderEnd = Model.PageCount;
+    }
+    var routes = Model.Routes;
+}
+@if (Model.PageCount > 1)
+{
+    <nav>
+        <ul class="pagination">
+            @if (previous >= 1)
+            {
+                <li class="page-item">
+                    routes["pageNum"] = previous;
+                    @Html.ActionLink("<", Model.ActionName, Model.ControllerName, routes, new { @class = "page-link" })
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <a href="javascript:(void 0)" class="page-link">&laquo;</a>
+                </li>
+            }
+            @for (int i = renderStart; i <= renderEnd; i++)
+            {
+                routes["pageNum"] = i;
+                <li class="page-item">
+                    @Html.ActionLink(i.ToString(),Model.ActionName,Model.ControllerName,routes,new { @class="page-link"})
+                </li>
+            }
+            @if (next <= Model.PageCount)
+            {
+                routes["pageNum"] = @next;
+                <li class="page-item">
+                    @Html.ActionLink(">", Model.ActionName, Model.ControllerName, routes, new { @class = "page-link" })
+                </li>
+            }
+            else
+            {
+                routes["pageNum"] = Model.PageCount;
+                <li class="page-item">
+                    @Html.ActionLink(">", Model.ActionName, Model.ControllerName, routes, new { @class = "page-link" })
+                </li>
+            }
+        </ul>
+    </nav>
+}

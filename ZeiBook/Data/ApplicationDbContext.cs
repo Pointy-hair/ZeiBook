@@ -18,9 +18,10 @@ namespace ZeiBook.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.Entity<Category>().HasAlternateKey(c => c.Name);
+            builder.Entity<Category>().HasIndex(c => c.Name).IsUnique();
             builder.Entity<BookRankResultItem>().HasKey(t => new { t.BookRankId, t.BookId });
-            builder.Entity<Book>().HasAlternateKey(t=>new { t.Author,t.Name});
+            builder.Entity<Book>().HasIndex(t=>new { t.AuthorId,t.Name}).IsUnique();
+            builder.Entity<Author>().HasIndex(c => c.Name).IsUnique();
         }
 
         public DbSet<Book> Books { get; set; }
@@ -28,5 +29,6 @@ namespace ZeiBook.Data
         public DbSet<BookRank> BookRanks { get; set; }
         public DbSet<BookDayInfo> BookDayInfos { get; set; }
         public DbSet<BookRankResultItem> BookRankResultItems { get; set; }
+        public DbSet<Author> Authors { get; set; }
     }
 }

@@ -12,8 +12,8 @@ namespace ZeiBook.Models
         public int Id { get; set; }
         [Required]
         public String Name { get; set; }
-        [Required]
-        public String Author { get; set; }
+        [ForeignKey("Writer")]
+        public int? AuthorId { get; set; }
         public DateTime UploadTime { get; set; }
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
@@ -25,6 +25,7 @@ namespace ZeiBook.Models
         public string CoverPath { get; set; }
 
         public Category Category { get; set; }
+        public Author Writer { get; set; }
     }
 
     public enum Gender

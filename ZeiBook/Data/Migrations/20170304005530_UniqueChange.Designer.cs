@@ -9,9 +9,10 @@ using ZeiBook.Models;
 namespace ZeiBook.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170304005530_UniqueChange")]
+    partial class UniqueChange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.2")
@@ -194,6 +195,9 @@ namespace ZeiBook.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Author")
+                        .IsRequired();
+
                     b.Property<int?>("AuthorId");
 
                     b.Property<int>("CategoryId");
@@ -221,7 +225,7 @@ namespace ZeiBook.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("AuthorId", "Name")
+                    b.HasIndex("Author", "Name")
                         .IsUnique();
 
                     b.ToTable("Books");

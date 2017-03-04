@@ -38,24 +38,24 @@ namespace ZeiBook.Test
         [TestMethod]
         public void DoTran()
         {
-            ApplicationDbContext context = ContextBuilder.GetAppContext();
-            BookDbContext bookContext = BookContextBuilder.GetAppContext();
-            TranAction action = new TranAction(context);
-            var list = context.Categories;
-            int count = 0;
-            foreach (var item in bookContext.BookDatas)
-            {
-                if (count++ % 100 == 1)
-                {
-                    context.SaveChanges();
-                }
-                var bookItem = action.GetBook(item);
-                if (!context.Books.Any(t => t.Name == bookItem.Name && t.Author == bookItem.Author))
-                {
-                    context.Books.Add(bookItem);
-                }
-            }
-            context.SaveChanges();
+            //ApplicationDbContext context = ContextBuilder.GetAppContext();
+            //BookDbContext bookContext = BookContextBuilder.GetAppContext();
+            //TranAction action = new TranAction(context);
+            //var list = context.Categories;
+            //int count = 0;
+            //foreach (var item in bookContext.BookDatas)
+            //{
+            //    if (count++ % 100 == 1)
+            //    {
+            //        context.SaveChanges();
+            //    }
+            //    var bookItem = action.GetBook(item);
+            //    if (!context.Books.Any(t => t.Name == bookItem.Name && t.Author == bookItem.Author))
+            //    {
+            //        context.Books.Add(bookItem);
+            //    }
+            //}
+            //context.SaveChanges();
         }
 
 

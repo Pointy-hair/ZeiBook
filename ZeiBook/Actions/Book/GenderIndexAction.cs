@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace ZeiBook.Actions.Book
         private GenderIndexViewModel GetViewModel(Gender gender, PageOption option)
         {
             var skipNum = (option.PageNum - 1) * option.PageSize;
-            var list = _context.Books.Where(b => b.Gender == gender).OrderByDescending(b => b.UploadTime).Take(option.PageSize).ToList();
+            var list = _context.Books.Include(t=>t.Writer).Where(b => b.Gender == gender).OrderByDescending(b => b.UploadTime).Take(option.PageSize).ToList();
 
             var model = new GenderIndexViewModel
             {

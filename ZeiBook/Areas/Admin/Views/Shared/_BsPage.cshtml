@@ -1,0 +1,51 @@
+﻿@model ZeiBook.Models.Utils.PageOption
+
+@{
+    var pageNum = Model.PageNum;
+    var length = 10;
+    var renderStart = (pageNum - 1) / length * length + 1;
+    var renderEnd = ((pageNum - 1) / length + 1) * length;
+    var previous = renderStart - length;
+    var next = renderEnd + length;
+    if (Model.PageCount < renderEnd)
+    {
+        renderEnd = Model.PageCount;
+    }
+}
+@if (Model.PageCount > 1)
+{
+    <nav>
+        <ul class="pagination">
+            @if (previous >= 1)
+            {
+                <li class="page-item">
+                    <a asp-route-pagenum="@previous" class="page-link">&laquo;</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <a href="javascript:(void 0)" class="page-link">&laquo;</a>
+                </li>
+            }
+            @for (int i = renderStart; i <= renderEnd; i++)
+            {
+                <li class="page-item">
+                    <a asp-route-pagenum="@i" class="page-link">@i</a>
+                </li>
+            }
+            @if (next <= Model.PageCount)
+            {
+                <li class="page-item">
+                    <a asp-route-pagenum="@next" class="page-link">&raquo;</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a asp-route-pagenum="@Model.PageCount" class="page-link">&raquo;</a>
+                </li>
+            }
+        </ul>
+    </nav>
+}

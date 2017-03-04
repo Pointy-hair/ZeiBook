@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ namespace ZeiBook.Actions.Book
             var category = _context.Categories.SingleOrDefault(c => c.Id == cateId);
             
             var skipNum = (option.PageNum - 1) * option.PageSize;
-            var list = _context.Books.Where(b=>b.CategoryId==cateId).OrderByDescending(t => t.UploadTime).Skip(skipNum).Take(option.PageSize).ToList();
+            var list = _context.Books.Include(t=>t.Writer).Where(b=>b.CategoryId==cateId).OrderByDescending(t => t.UploadTime).Skip(skipNum).Take(option.PageSize).ToList();
             var model = new CategoryIndexViewModel()
             {
                 Category = category,

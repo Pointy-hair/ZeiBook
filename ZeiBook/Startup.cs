@@ -69,7 +69,9 @@ namespace ZeiBook
             //
             services.AddTransient<CreateAction>();
             services.AddTransient<CategoryIndexAction>();
-            services.AddTransient<IndexAction>();
+            services.AddTransient<Actions.Home.IndexAction>();
+            services.AddTransient<Areas.Admin.Actions.Books.IndexAction>();
+            services.AddTransient<Areas.Admin.Actions.Authors.IndexAction>();
             services.AddTransient<CategoryAction>();
             services.AddTransient<GenderIndexAction>();
             services.AddTransient<BookIndexAction>();

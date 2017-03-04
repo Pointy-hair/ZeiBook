@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace ZeiBook.Actions.Book
             po.PageCount = (int)Math.Ceiling(_context.Books.Count()/(double)pageSize);
             if (!po.Valid()) return null;
             var skipNum = (pageNum - 1) * pageSize;
-            var list = _context.Books.OrderByDescending(b=>b.UploadTime).Skip(skipNum).Take(pageSize).ToList();
+            var list = _context.Books.Include(t=>t.Writer).OrderByDescending(b=>b.UploadTime).Skip(skipNum).Take(pageSize).ToList();
             var model = new BookIndexViewModel
             {
                 PageOption = po,
