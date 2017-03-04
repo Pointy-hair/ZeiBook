@@ -84,5 +84,18 @@ namespace ZeiBook.Controllers
             if (model == null) return NotFound();
             return View(model);
         }
+
+        [Route("/a/{authorName}", Order = 1)]
+        [Route("/a/{authorName}/p{pageNum}", Order = 0)]
+        public IActionResult AuthorIndex(string authorName, int? pageNum, [FromServices]AuthorIndexAction action)
+        {
+            if (authorName == null)
+            {
+                return NotFound();
+            }
+            var model = action.GetViewModel(authorName, pageNum ?? 1);
+            if (model == null) return NotFound();
+            return View(model);
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace ZeiBook.Areas.Admin.Actions.Authors
             _context = context;
         }
 
-        public async Task<AuthorIndexViewModel> GetViewModelAsync(int pageNum,string authorName, int pageSize = 50)
+        public async Task<Models.AuthorIndexViewModel> GetViewModelAsync(int pageNum,string authorName, int pageSize = 50)
         {
             IQueryable<Author> coll = null;
             if (authorName != null)
@@ -48,7 +48,7 @@ namespace ZeiBook.Areas.Admin.Actions.Authors
             po.Routes = new RouteValueDictionary();
             po.Routes.Add("pageNum", pageNum);
             po.Routes.Add("authorName", authorName);
-            return new AuthorIndexViewModel
+            return new Models.AuthorIndexViewModel
             {
                 Authors = list,
                 PageOption = po

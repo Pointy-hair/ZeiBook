@@ -19,7 +19,7 @@
                         <h5><a asp-action="Item" asp-route-id="@item.Id">《@item.Name》txt全集</a></h5>
                         <div class="bookInfo">
                             <span>上传日期：@item.UploadTime</span>
-                            <span>作者：@item.Writer.Name</span>
+                            <span>作者：<a asp-action="AuthorIndex" asp-route-authorName="@item.Writer.Name">@item.Writer.Name</a></span>
                             <span>大小：@Html.DisplayFileLength(@item.FileLength)</span>
                             <span>下载次数：@item.DownloadTime</span>
                         </div>

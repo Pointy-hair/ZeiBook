@@ -18,7 +18,7 @@ namespace ZeiBook.Components
             _context = context;
         }
 
-        public IViewComponentResult Invoke(int? categoryId,Gender? gender)
+        public IViewComponentResult Invoke(int? categoryId,Gender? gender,int? authorId)
         {
             List<Book> list = null;
             if (categoryId != null)
@@ -30,6 +30,12 @@ namespace ZeiBook.Components
             {
                 list = _context.Books
                     .Where(t => t.Gender == gender)
+                    .OrderByDescending(t => t.DownloadTime).Take(10).ToList();
+            }
+            else if (authorId != null)
+            {
+                list = _context.Books
+                    .Where(t => t.AuthorId==authorId)
                     .OrderByDescending(t => t.DownloadTime).Take(10).ToList();
             }
             else

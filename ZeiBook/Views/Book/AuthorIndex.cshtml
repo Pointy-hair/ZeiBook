@@ -1,17 +1,18 @@
-﻿@model BookIndexViewModel
+﻿@model AuthorIndexViewModel
 @{
-    ViewBag.Title = "Books";
+    ViewBag.Title = Model.Author.Name;
 }
 
 @await Component.InvokeAsync("Category")
 <div class="row">
     <div class="col-md-9">
+        <h5>@ViewBag.Title</h5>
         <ul class="bookList">
             @foreach (var item in Model.Books)
             {
             <li>
                 <div class="bookImage">
-                    <a asp-action="Item" asp-controller="Book" asp-route-id="@item.Id">
+                    <a asp-controller="Book" asp-action="Item" asp-route-id="@item.Id">
                         <img src="@(item.CoverPath??"/images/pic01.jpg")">
                     </a>
                 </div>
@@ -19,8 +20,8 @@
                     <h5><a asp-action="Item" asp-route-id="@item.Id">《@item.Name》txt全集</a></h5>
                     <div class="bookInfo">
                         <span>上传日期：@item.UploadTime</span>
-                        <span>作者：<a asp-action="AuthorIndex" asp-route-authorName="@item.Writer.Name">@item.Writer.Name</a></span>
-                        <span>大小：@Html.DisplayFileLength(item.FileLength)</span>
+                        <span>分类：@item.Category.Name</span>
+                        <span>大小：@Html.DisplayFileLength(@item.FileLength)</span>
                         <span>下载次数：@item.DownloadTime</span>
                     </div>
                     <p class="intro">
@@ -30,10 +31,10 @@
             </li>
             }
         </ul>
-        @Html.Partial("_Page",Model.PageOption)
+        @Html.Partial("_Page", Model.PageOption)
     </div>
     <div class="col-md-3">
-        @await Component.InvokeAsync("Rank")
+        @await Component.InvokeAsync("Rank", new {  authorId = Model.Author.Id })
     </div>
 </div>
 
