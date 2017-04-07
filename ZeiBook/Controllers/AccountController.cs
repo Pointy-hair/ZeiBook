@@ -469,7 +469,7 @@ namespace ZeiBook.Controllers
             }
             else
             {
-                return RedirectToAction(nameof(HomeController.Index), "Home",new { area="Admin"});
+                return RedirectToAction(nameof(HomeController.Index), "Home",new { area=""});
             }
         }
 

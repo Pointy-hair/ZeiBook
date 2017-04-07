@@ -4,6 +4,27 @@
     ViewData["Title"] = Model.Name;
 }
 
+@section Scripts {
+    <script>
+        $(function(){
+            var $btnAddComment = $("#btnAddComment");
+            var $formAddComment = $("#formAddComment");
+
+            $btnAddComment.click(function () {
+                var forminfo = $formAddComment.serializeArray();
+                console.log(forminfo);
+                $.ajax({
+                    url: $formAddComment.prop("action"),
+                    type: 'POST',
+                    data: forminfo
+                }).done(function (result) {
+                    console.log(result);
+                });
+            });
+        });
+    </script>
+}
+
 <div class="center-area row">
     <div class="article col-md-8 col-lg-9">
         <h3 class="title">《@Model.Name》txt全集</h3>
@@ -66,6 +87,15 @@
             </ul>
         </div>
         <div class="box-off">
+        </div>
+        <div class="commentArea">
+            <form asp-action="Add" asp-controller="Comments" asp-route-bookId="@Model.Id" id="formAddComment">
+                <textarea class="col-12" rows="6" name="content"></textarea>
+                <button type="button" id="btnAddComment">提交</button>
+            </form>
+        </div>
+        <div>
+
         </div>
     </div>
     <div class="col-md-4 col-lg-3">

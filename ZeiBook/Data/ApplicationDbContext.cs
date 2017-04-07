@@ -30,5 +30,6 @@ namespace ZeiBook.Data
         public DbSet<BookDayInfo> BookDayInfos { get; set; }
         public DbSet<BookRankResultItem> BookRankResultItems { get; set; }
         public DbSet<Author> Authors { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }
