@@ -3,14 +3,19 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+
+@section Styles{
+    <link href="~/css/index.css" rel="stylesheet" />
+}
+
 <div class="book-area row">
-    <div class="col-md-4 pr-md-0">
-        <dl class="box1">
-            <dt>
+    <div class="col-md-4">
+        <div class="box">
+            <div class="box-header">
                 <strong>最新男频小说</strong>
-            </dt>
-            <dd>
-                <ul>
+            </div>
+            <div class="box-block">
+                <ul class="none-style-ul">
                     @foreach (var item in Model.BoyBooks)
                     {
                         <li>
@@ -20,17 +25,16 @@
                         </li>
                     }
                 </ul>
-            </dd>
-        </dl>
-
+            </div>
+        </div>
     </div>
-    <div class="col-md-4 pr-md-0">
-        <dl class="box1">
-            <dt>
+    <div class="col-md-4 pl-0">
+        <div class="box">
+            <div class="box-header">
                 <strong>最新女频小说</strong>
-            </dt>
-            <dd>
-                <ul>
+            </div>
+            <div class="box-block">
+                <ul class="none-style-ul">
                     @foreach (var item in Model.GirlBooks)
                     {
                         <li>
@@ -40,24 +44,27 @@
                         </li>
                     }
                 </ul>
-            </dd>
-        </dl>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <dl class="box1">
-            <dt>
+    <div class="col-md-4 pl-0">
+        <div class="box">
+            <div class="box-header">
                 <strong>下载排行</strong>
-            </dt>
-            <dd>
-                <ul>
+            </div>
+            <div class="box-block">
+                <ul class="none-style-ul">
                     @foreach (var item in Model.TopDownloadBooks)
                     {
                         <li>
+                            <span class="date">@Html.DisplayShortDate(item.UploadTime)</span>
+                            <a asp-action="CategoryIndex" asp-controller="Book" asp-route-id="@item.CategoryId">[@item.Category.Name]</a>
                             <a asp-action="Item" asp-controller="Book" asp-route-id="@item.Id">《@item.Name》txt全集</a>
                         </li>
                     }
                 </ul>
-            </dd>
-        </dl>
+            </div>
+        </div>
     </div>
+
 </div>

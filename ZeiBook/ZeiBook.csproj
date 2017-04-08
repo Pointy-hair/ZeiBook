@@ -24,11 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="wwwroot\css\site.css" />
-    <Content Include="wwwroot\css\site.map" />
-    <Content Include="wwwroot\css\site.min.css" />
-    <Content Include="wwwroot\css\site_all.css" />
-    <Content Include="wwwroot\css\site_all.map" />
+    <None Remove="npm-debug.log" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="wwwroot\favicon.ico" />
     <Content Include="wwwroot\images\banner1.svg" />
     <Content Include="wwwroot\images\banner2.svg" />
@@ -36,8 +35,7 @@
     <Content Include="wwwroot\images\banner4.svg" />
     <Content Include="wwwroot\images\pic01.jpg" />
     <Content Include="wwwroot\images\top-logo.gif" />
-    <Content Include="wwwroot\js\site.js" />
-    <Content Include="wwwroot\js\site.min.js" />
+    <Content Include="wwwroot\js\entry.js" />
     <Content Include="wwwroot\lib\bootstrap\.bower.json" />
     <Content Include="wwwroot\lib\bootstrap\bower.json" />
     <Content Include="wwwroot\lib\bootstrap\CHANGELOG.md" />

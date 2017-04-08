@@ -7,64 +7,61 @@
     <meta name="viewport" content="width=device-width" />
     <meta charset="utf-8" />
     <title>@ViewBag.Title - ZeiBook</title>
-    <link href="~/lib/bootstrap/dist/css/bootstrap-grid.css" rel="stylesheet" />
-    <link href="~/css/site_all.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     @RenderSection("Styles", false)
 </head>
 <body>
     <div class="body-content container">
-        <header class="header">
+        <header class="d-flex flex-wrap" id="header">
             <div class="brand">
             </div>
-            <form asp-action="Index" asp-controller="Search" class="search-form" method="get">
-                <input type="text" name="keyword" id="keyword">
-                <button type="submit">搜索</button>
+            <form asp-action="Index" asp-controller="Search" id="searchForm" class="input-group" method="get">
+                <input type="text" name="keyword" class="form-control" id="keyword">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-secondary">搜索</button>
+                </span>
             </form>
 
             @if (SignInManager.IsSignedIn(User))
             {
-                <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
-                    <div class="space"></div>
-                    <ul>
-                        <li>
-                            <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-                        </li>
-                        <li>
-                            <button type="submit" class="btn-link">Log out</button>
-                        </li>
-                    </ul>
-                </form>
+            <form asp-area="" asp-controller="Account" asp-action="Logout" class="ml-lg-auto" method="post" id="logoutForm">
+                <ul class="btn-group pl-0 mb-1">
+                    <li class="btn btn-secondary">
+                        <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                    </li>
+                    <li class="btn btn-secondary">
+                        <a title="Log out" href="#" onclick="document.getElementById('logoutFrom').submit();">Log out</a>
+                    </li>
+                </ul>
+            </form>
             }
             else
             {
-                <div id="logoutForm">
-                    <div class="space"></div>
-                    <ul>
-                        <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
-                        <li><a asp-area="" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Context.Request.Path">Log in</a></li>
-                    </ul>
-                </div>
+            <div class="ml-lg-auto" id="logoutForm">
+                <ul class="btn-group pl-0 mb-1">
+                    <li class="btn btn-secondary"><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
+                    <li class="btn btn-secondary"><a asp-area="" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Context.Request.Path">Log in</a></li>
+                </ul>
+            </div>
             }
         </header>
-        <div class="clearfx"></div>
-        <div class="nav">
-            <ul>
-                <li><a asp-action="Index" asp-controller="Home">贼吧网首页</a></li>
-                <li><a asp-action="Index" asp-controller="Book" asp-route-pagenum="">电子书</a></li>
-                <li><a href="#">邪恶漫画</a></li>
-                <li><a href="#">网友留言</a></li>
+        <div id="nav">
+            <ul class="nav flex-wrap">
+                <li><a class="nav-link" asp-action="Index" asp-controller="Home">贼吧网首页</a></li>
+                <li><a class="nav-link" asp-action="Index" asp-controller="Book" asp-route-pagenum="">电子书</a></li>
+                <li><a class="nav-link" href="#">邪恶漫画</a></li>
+                <li><a class="nav-link" href="#">网友留言</a></li>
             </ul>
         </div>
         @RenderBody()
-        <hr />
-        <div class="footer">
-            <p class="powerd">
-                powered by Naergaga &copy; 2017
+        <hr>
+        <footer class="text-center">
+            <p>
+                powered by Naergaga © 2017
             </p>
-            <p class="copryright">本站为非营利性网站，作品版权属于原作者，仅为个人学习、研究或者欣赏使用。所收录的资源均来自于互联网各大网站及其他论坛用户分享，本站只提供web页面服务，并不提供相关资源存储、也不参与其录制、上传等服务。</p>
-        </div>
-    </div>
-        <script src="~/lib/jquery/dist/jquery.js"></script>
+            <p>本站为非营利性网站，作品版权属于原作者，仅为个人学习、研究或者欣赏使用。所收录的资源均来自于互联网各大网站及其他论坛用户分享，本站只提供web页面服务，并不提供相关资源存储、也不参与其录制、上传等服务。</p>
+        </footer>
         @RenderSection("Scripts", false)
+    </div>
 </body>
 </html>

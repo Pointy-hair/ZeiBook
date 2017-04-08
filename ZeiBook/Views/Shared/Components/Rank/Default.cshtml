@@ -1,9 +1,9 @@
 ﻿@model List<Book>
 
-<dl class="box1">
-    <dt>下载排行</dt>
-    <dd>
-        <ul>
+<div class="box">
+    <div class="box-header">下载排行</div>
+    <div class="box-block">
+        <ul class="none-style-ul">
             @foreach (var item in Model)
             {
                 <li>
@@ -11,5 +11,5 @@
                 </li>
             }
         </ul>
-    </dd>
-</dl>
+    </div>
+</div>

@@ -1,38 +1,26 @@
 ﻿@model Book
 
-@{ 
+@{
     ViewData["Title"] = Model.Name;
 }
 
-@section Scripts {
-    <script>
-        $(function(){
-            var $btnAddComment = $("#btnAddComment");
-            var $formAddComment = $("#formAddComment");
-
-            $btnAddComment.click(function () {
-                var forminfo = $formAddComment.serializeArray();
-                console.log(forminfo);
-                $.ajax({
-                    url: $formAddComment.prop("action"),
-                    type: 'POST',
-                    data: forminfo
-                }).done(function (result) {
-                    console.log(result);
-                });
-            });
-        });
-    </script>
+@section Styles{
+    <link href="~/css/bookItem.css" rel="stylesheet" />
+    <link href="~/css/main.css" rel="stylesheet" />
 }
 
-<div class="center-area row">
-    <div class="article col-md-8 col-lg-9">
+@section Scripts {
+    <script src="~/js/bundle.js"></script>
+}
+
+<div class="bookItemInfo row">
+    <div class="article col-md-8">
         <h3 class="title">《@Model.Name》txt全集</h3>
-        <div class="container-fluid info-list row">
-            <div class="col-3">
+        <div class="info-content">
+            <div class="bookImage">
                 <img class="cover" src="@(Model.CoverPath??"/images/pic01.jpg")">
             </div>
-            <div class="col-9">
+            <div class="info-list pl-3">
                 <div>
                     <span>小说大小：</span>
                     <span>@Html.DisplayFileLength(Model.FileLength)</span>
@@ -63,15 +51,15 @@
                 </div>
             </div>
         </div>
-        <div class="box-off">
+        <div class="content-off">
         </div>
         <div class="content">
             @Html.Raw(Model.Description)
         </div>
-        <div class="box-off">
+        <div class="content-off">
         </div>
         <div>
-            <ul class="download-url-list">
+            <ul class="download-url-list none-style-ul">
                 <li>
                     <a asp-action="Down" asp-route-id="@Model.Id">电信高速下载</a>
                 </li>
@@ -86,19 +74,13 @@
                 </li>
             </ul>
         </div>
-        <div class="box-off">
+        <div class="content-off">
         </div>
-        <div class="commentArea">
-            <form asp-action="Add" asp-controller="Comments" asp-route-bookId="@Model.Id" id="formAddComment">
-                <textarea class="col-12" rows="6" name="content"></textarea>
-                <button type="button" id="btnAddComment">提交</button>
-            </form>
-        </div>
-        <div>
+        <div id="commentArea">
 
         </div>
     </div>
-    <div class="col-md-4 col-lg-3">
+    <div class="col-md-4">
         @await Component.InvokeAsync("Rank", new { categoryId = Model.Category.Id })
     </div>
 </div>

@@ -3,6 +3,11 @@
     ViewBag.Title = Model.Author.Name;
 }
 
+
+@section Styles{
+    <link href="~/css/books.css" rel="stylesheet" />
+}
+
 @await Component.InvokeAsync("Category")
 <div class="row">
     <div class="col-md-9">
@@ -17,7 +22,7 @@
                     </a>
                 </div>
                 <div class="bookDiv">
-                    <h5><a asp-action="Item" asp-route-id="@item.Id">《@item.Name》txt全集</a></h5>
+                    <a asp-action="Item" class="book-title" asp-route-id="@item.Id">《@item.Name》txt全集</a>
                     <div class="bookInfo">
                         <span>上传日期：@item.UploadTime</span>
                         <span>分类：@item.Category.Name</span>
