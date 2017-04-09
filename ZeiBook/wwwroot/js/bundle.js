@@ -10173,7 +10173,7 @@ var CommentBox = function (_React$Component) {
         value: function fetchComments(bookId, pageNum) {
             var _this2 = this;
 
-            var url = '/Comment/' + bookId + "/p" + pageNum;
+            var url = '/Comments/' + bookId + "/p" + pageNum;
             fetch(url).then(function (response) {
                 return response.json();
             }).then(function (json) {
