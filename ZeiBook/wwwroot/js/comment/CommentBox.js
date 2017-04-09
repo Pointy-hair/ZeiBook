@@ -12,8 +12,8 @@ class CommentBox extends React.Component {
         this.addComment = this.addComment.bind(this);
         this.removeComment = this.removeComment.bind(this);
 
-        var config = new CommentConfig();
-        this.fetchComments(config.bookId, 1);
+        this.config = new CommentConfig();
+        this.fetchComments(this.config.bookId, 1);
 
         this.state = {
             comments: []
@@ -38,8 +38,7 @@ class CommentBox extends React.Component {
     }
 
     removeComment(commentId) {
-        var url = '/Comment/Remove/' + commentId;
-        url = "/json/addResult.json";
+        var url = '/Comments/Remove/' + commentId;
         fetch(url).then(function (response) {
             return response.json();
         }).then((json) => {
@@ -56,7 +55,7 @@ class CommentBox extends React.Component {
         return (
             <div className="commentBox">
                 <CommentForm addCommentToList={this.addComment}/>
-                <CommentList comments={this.state.comments} removeComment={this.removeComment}/>
+                <CommentList comments={this.state.comments} removeComment={this.removeComment} currentUserId={this.config.userId}/>
             </div>
         );
     }

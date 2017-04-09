@@ -10152,8 +10152,8 @@ var CommentBox = function (_React$Component) {
         _this.addComment = _this.addComment.bind(_this);
         _this.removeComment = _this.removeComment.bind(_this);
 
-        var config = new _commentConfig2.default();
-        _this.fetchComments(config.bookId, 1);
+        _this.config = new _commentConfig2.default();
+        _this.fetchComments(_this.config.bookId, 1);
 
         _this.state = {
             comments: []
@@ -10187,8 +10187,7 @@ var CommentBox = function (_React$Component) {
         value: function removeComment(commentId) {
             var _this3 = this;
 
-            var url = '/Comment/Remove/' + commentId;
-            url = "/json/addResult.json";
+            var url = '/Comments/Remove/' + commentId;
             fetch(url).then(function (response) {
                 return response.json();
             }).then(function (json) {
@@ -10207,7 +10206,7 @@ var CommentBox = function (_React$Component) {
                 'div',
                 { className: 'commentBox' },
                 _react2.default.createElement(_CommentForm2.default, { addCommentToList: this.addComment }),
-                _react2.default.createElement(_CommentList2.default, { comments: this.state.comments, removeComment: this.removeComment })
+                _react2.default.createElement(_CommentList2.default, { comments: this.state.comments, removeComment: this.removeComment, currentUserId: this.config.userId })
             );
         }
     }]);
@@ -10371,6 +10370,7 @@ var CommentItem = function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
+            var isCurrentUser = this.props.currentUserId == this.props.comment.userId;
             return _react2.default.createElement(
                 "div",
                 { className: "comment-item" },
@@ -10395,11 +10395,11 @@ var CommentItem = function (_React$Component) {
                         _react2.default.createElement(
                             "span",
                             null,
-                            _react2.default.createElement(
+                            isCurrentUser ? _react2.default.createElement(
                                 "a",
                                 { href: "#", onClick: this.handleRemove },
                                 "\u5220\u9664"
-                            )
+                            ) : ""
                         )
                     )
                 )
