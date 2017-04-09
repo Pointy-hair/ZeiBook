@@ -10132,8 +10132,6 @@ var _commentConfig = __webpack_require__(87);
 
 var _commentConfig2 = _interopRequireDefault(_commentConfig);
 
-__webpack_require__(188);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -10175,11 +10173,13 @@ var CommentBox = function (_React$Component) {
             var _this2 = this;
 
             var url = '/Comments/' + bookId + "/p" + pageNum;
-            fetch(url).then(function (response) {
-                return response.json();
-            }).then(function (json) {
-                if (json.success) {
-                    _this2.setState({ comments: _Comment2.default.GetComments(json.comments) });
+            //url= "/json/commentList.json";
+            axios.get(url, {
+                responseType: 'json'
+            }).then(function (response) {
+                var data = response.data;
+                if (data.success) {
+                    _this2.setState({ comments: _Comment2.default.GetComments(data.comments) });
                 }
             });
         }
@@ -10189,11 +10189,10 @@ var CommentBox = function (_React$Component) {
             var _this3 = this;
 
             var url = '/Comments/Remove/' + commentId;
-            fetch(url, {
-                method: "POST"
+            axios.post(url, {
+                responseType: 'json'
             }).then(function (response) {
-                return response.json();
-            }).then(function (json) {
+                var json = response.data;
                 if (json.success) {
                     var comments = _this3.state.comments.filter(function (comment) {
                         return comment.id != commentId;

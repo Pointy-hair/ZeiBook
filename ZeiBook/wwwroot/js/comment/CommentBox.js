@@ -3,7 +3,6 @@ import CommentForm from './CommentForm';
 import CommentList from './CommentList';
 import Comment from "./Comment";
 import CommentConfig from './comment-config';
-import 'whatwg-fetch';
 
 class CommentBox extends React.Component {
 
@@ -28,22 +27,24 @@ class CommentBox extends React.Component {
 
     fetchComments(bookId, pageNum) {
         var url = '/Comments/' + bookId + "/p" + pageNum;
-        fetch(url).then(function (response) {
-            return response.json();
-        }).then((json) => {
-            if (json.success){
-                this.setState({comments: Comment.GetComments(json.comments)});
+        //url= "/json/commentList.json";
+        axios.get(url,{
+            responseType:'json'
+        }).then((response) => {
+            var data = response.data;
+            if (data.success){
+                this.setState({comments: Comment.GetComments(data.comments)});
             }
         });
     }
 
     removeComment(commentId) {
         var url = '/Comments/Remove/' + commentId;
-        fetch(url,{
-            method:"POST"
-        }).then(function (response) {
-            return response.json();
-        }).then((json) => {
+        axios.post(url,{
+            responseType: 'json',
+            maxRedirects:0,
+        }).then((response) => {
+            var json = response.data;
             if (json.success) {
                 var comments = this.state.comments.filter(
                     comment => comment.id != commentId,
