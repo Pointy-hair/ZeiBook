@@ -6775,8 +6775,8 @@ var CommentList = function (_React$Component) {
             var _this2 = this;
 
             return this.props.comments.map(function (comment) {
-                // console.log(this.props.currentUserId);
-                // console.log(this.props.userId);
+                console.log(_this2.props.currentUserId);
+                console.log(comment.userId);
                 var isCurrentUser = comment.userId === _this2.props.currentUserId;
                 return _react2.default.createElement(_CommentItem2.default, { key: comment.id, onRemove: _this2.props.removeComment, comment: comment, isCurrentUser: isCurrentUser });
             });
