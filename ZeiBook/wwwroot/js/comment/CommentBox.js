@@ -21,14 +21,14 @@ class CommentBox extends React.Component {
 
     addComment(comment) {
         var url = '/Comments/Add';
-        axios.post(url,{
-            responseType: 'json',
-            maxRedirects:0,
-            data:{
-                bookId:this.config.bookId,
-                content:comment.content
+        axios.post(url, {
+                bookId: this.config.bookId,
+                content: comment.content,
+            }, {
+                maxRedirects: 0,
+                responseType: 'json'
             }
-        }).then((response) => {
+        ).then((response) => {
             var json = response.data;
             if (json.success) {
                 this.setState({
@@ -42,11 +42,11 @@ class CommentBox extends React.Component {
     fetchComments(bookId, pageNum) {
         var url = '/Comments/' + bookId + "/p" + pageNum;
         //url= "/json/commentList.json";
-        axios.get(url,{
-            responseType:'json'
+        axios.get(url, {
+            responseType: 'json'
         }).then((response) => {
             var data = response.data;
-            if (data.success){
+            if (data.success) {
                 this.setState({comments: Comment.GetComments(data.comments)});
             }
         });
@@ -54,9 +54,9 @@ class CommentBox extends React.Component {
 
     removeComment(commentId) {
         var url = '/Comments/Remove/' + commentId;
-        axios.post(url,{
+        axios.post(url, {
             responseType: 'json',
-            maxRedirects:0,
+            maxRedirects: 0,
         }).then((response) => {
             var json = response.data;
             if (json.success) {
@@ -72,7 +72,8 @@ class CommentBox extends React.Component {
         return (
             <div className="commentBox">
                 <CommentForm addCommentToList={this.addComment}/>
-                <CommentList comments={this.state.comments} removeComment={this.removeComment} currentUserId={this.config.userId}/>
+                <CommentList comments={this.state.comments} removeComment={this.removeComment}
+                             currentUserId={this.config.userId}/>
             </div>
         );
     }

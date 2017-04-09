@@ -10167,12 +10167,11 @@ var CommentBox = function (_React$Component) {
 
             var url = '/Comments/Add';
             axios.post(url, {
-                responseType: 'json',
+                bookId: this.config.bookId,
+                content: comment.content
+            }, {
                 maxRedirects: 0,
-                data: {
-                    bookId: this.config.bookId,
-                    content: comment.content
-                }
+                responseType: 'json'
             }).then(function (response) {
                 var json = response.data;
                 if (json.success) {
@@ -10224,7 +10223,8 @@ var CommentBox = function (_React$Component) {
                 'div',
                 { className: 'commentBox' },
                 _react2.default.createElement(_CommentForm2.default, { addCommentToList: this.addComment }),
-                _react2.default.createElement(_CommentList2.default, { comments: this.state.comments, removeComment: this.removeComment, currentUserId: this.config.userId })
+                _react2.default.createElement(_CommentList2.default, { comments: this.state.comments, removeComment: this.removeComment,
+                    currentUserId: this.config.userId })
             );
         }
     }]);
