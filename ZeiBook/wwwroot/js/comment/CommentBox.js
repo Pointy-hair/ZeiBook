@@ -3,35 +3,53 @@ import CommentForm from './CommentForm';
 import CommentList from './CommentList';
 import Comment from "./Comment";
 import CommentConfig from './comment-config';
+import 'whatwg-fetch';
 
 class CommentBox extends React.Component {
 
-    constructor(){
+    constructor() {
         super();
         this.addComment = this.addComment.bind(this);
         this.removeComment = this.removeComment.bind(this);
+
+        var config = new CommentConfig();
+        this.fetchComments(config.bookId, 1);
+
         this.state = {
-            comments : [
-                new Comment("heheheh"),
-                new Comment("xixixixi")
-            ]
+            comments: []
         };
     }
 
     addComment(comment) {
         this.setState({
-            comments:this.state.comments.concat(comment)
+            comments: this.state.comments.concat(comment)
         });
     }
 
-    fetchComments(pageNum) {
+    fetchComments(bookId, pageNum) {
+        var url = '/Comment/' + bookId + "/p" + pageNum;
+        fetch(url).then(function (response) {
+            return response.json();
+        }).then((json) => {
+            if (json.success){
+                this.setState({comments: Comment.GetComments(json.comments)});
+            }
+        });
     }
 
     removeComment(commentId) {
-        var comments = this.state.comments.filter(
-            comment=>comment.id!=commentId,
-        );
-        this.setState({comments});
+        var url = '/Comment/Remove/' + commentId;
+        url = "/json/addResult.json";
+        fetch(url).then(function (response) {
+            return response.json();
+        }).then((json) => {
+            if (json.success) {
+                var comments = this.state.comments.filter(
+                    comment => comment.id != commentId,
+                );
+                this.setState({comments});
+            }
+        });
     }
 
     render() {
