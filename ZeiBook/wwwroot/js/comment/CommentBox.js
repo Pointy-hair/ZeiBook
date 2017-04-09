@@ -39,7 +39,9 @@ class CommentBox extends React.Component {
 
     removeComment(commentId) {
         var url = '/Comments/Remove/' + commentId;
-        fetch(url).then(function (response) {
+        fetch(url,{
+            method:"POST"
+        }).then(function (response) {
             return response.json();
         }).then((json) => {
             if (json.success) {

@@ -6775,8 +6775,6 @@ var CommentList = function (_React$Component) {
             var _this2 = this;
 
             return this.props.comments.map(function (comment) {
-                console.log(_this2.props.currentUserId);
-                console.log(comment.userId);
                 var isCurrentUser = comment.userId === _this2.props.currentUserId;
                 return _react2.default.createElement(_CommentItem2.default, { key: comment.id, onRemove: _this2.props.removeComment, comment: comment, isCurrentUser: isCurrentUser });
             });
@@ -10191,7 +10189,9 @@ var CommentBox = function (_React$Component) {
             var _this3 = this;
 
             var url = '/Comments/Remove/' + commentId;
-            fetch(url).then(function (response) {
+            fetch(url, {
+                method: "POST"
+            }).then(function (response) {
                 return response.json();
             }).then(function (json) {
                 if (json.success) {
