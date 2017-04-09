@@ -35,7 +35,11 @@
     <Content Include="wwwroot\images\banner4.svg" />
     <Content Include="wwwroot\images\pic01.jpg" />
     <Content Include="wwwroot\images\top-logo.gif" />
+    <Content Include="wwwroot\js\comment-config.js" />
+    <Content Include="wwwroot\js\comment\comment-config.js" />
     <Content Include="wwwroot\js\entry.js" />
+    <Content Include="wwwroot\js\site-config.js" />
+    <Content Include="wwwroot\js\SiteConfig.js" />
     <Content Include="wwwroot\lib\bootstrap\.bower.json" />
     <Content Include="wwwroot\lib\bootstrap\bower.json" />
     <Content Include="wwwroot\lib\bootstrap\CHANGELOG.md" />

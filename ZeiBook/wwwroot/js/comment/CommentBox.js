@@ -2,6 +2,7 @@ import React from 'react';
 import CommentForm from './CommentForm';
 import CommentList from './CommentList';
 import Comment from "./Comment";
+import CommentConfig from './comment-config';
 
 class CommentBox extends React.Component {
 
@@ -21,6 +22,9 @@ class CommentBox extends React.Component {
         this.setState({
             comments:this.state.comments.concat(comment)
         });
+    }
+
+    fetchComments(pageNum) {
     }
 
     removeComment(commentId) {
