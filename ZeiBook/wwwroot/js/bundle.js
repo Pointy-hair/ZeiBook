@@ -10428,8 +10428,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var CommmentConfig = function CommmentConfig() {
     _classCallCheck(this, CommmentConfig);
 
-    this.userId = "e57a9a23-5f8f-43a3-b1e2-9ecbbcbe5f37";
-    this.bookId = 465;
+    this.userId = window.userId;
+    this.bookId = window.bookId;
 };
 
 exports.default = CommmentConfig;
