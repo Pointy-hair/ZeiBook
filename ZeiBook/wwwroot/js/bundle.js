@@ -10163,14 +10163,29 @@ var CommentBox = function (_React$Component) {
     _createClass(CommentBox, [{
         key: 'addComment',
         value: function addComment(comment) {
-            this.setState({
-                comments: this.state.comments.concat(comment)
+            var _this2 = this;
+
+            var url = '/Comments/Add';
+            axios.post(url, {
+                responseType: 'json',
+                maxRedirects: 0,
+                data: {
+                    bookId: this.config.bookId,
+                    content: comment.content
+                }
+            }).then(function (response) {
+                var json = response.data;
+                if (json.success) {
+                    _this2.setState({
+                        comments: _this2.state.comments.concat(comment)
+                    });
+                }
             });
         }
     }, {
         key: 'fetchComments',
         value: function fetchComments(bookId, pageNum) {
-            var _this2 = this;
+            var _this3 = this;
 
             var url = '/Comments/' + bookId + "/p" + pageNum;
             //url= "/json/commentList.json";
@@ -10179,25 +10194,26 @@ var CommentBox = function (_React$Component) {
             }).then(function (response) {
                 var data = response.data;
                 if (data.success) {
-                    _this2.setState({ comments: _Comment2.default.GetComments(data.comments) });
+                    _this3.setState({ comments: _Comment2.default.GetComments(data.comments) });
                 }
             });
         }
     }, {
         key: 'removeComment',
         value: function removeComment(commentId) {
-            var _this3 = this;
+            var _this4 = this;
 
             var url = '/Comments/Remove/' + commentId;
             axios.post(url, {
-                responseType: 'json'
+                responseType: 'json',
+                maxRedirects: 0
             }).then(function (response) {
                 var json = response.data;
                 if (json.success) {
-                    var comments = _this3.state.comments.filter(function (comment) {
+                    var comments = _this4.state.comments.filter(function (comment) {
                         return comment.id != commentId;
                     });
-                    _this3.setState({ comments: comments });
+                    _this4.setState({ comments: comments });
                 }
             });
         }

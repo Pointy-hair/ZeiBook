@@ -20,9 +20,23 @@ class CommentBox extends React.Component {
     }
 
     addComment(comment) {
-        this.setState({
-            comments: this.state.comments.concat(comment)
+        var url = '/Comments/Add';
+        axios.post(url,{
+            responseType: 'json',
+            maxRedirects:0,
+            data:{
+                bookId:this.config.bookId,
+                content:comment.content
+            }
+        }).then((response) => {
+            var json = response.data;
+            if (json.success) {
+                this.setState({
+                    comments: this.state.comments.concat(comment)
+                });
+            }
         });
+
     }
 
     fetchComments(bookId, pageNum) {
