@@ -19,7 +19,7 @@ class CommentItem extends React.Component {
                 <div className="d-flex">
                     <div className="ml-auto">
                         <span>{this.props.comment.userName} {this.props.comment.postTime}</span>
-                        <span>{this.props.isCurrentUser?<a href="#" onClick={this.handleRemove}>删除</a>}</span>
+                        <span>{this.props.isCurrentUser?<a href="#" onClick={this.handleRemove}>删除</a>:""}</span>
                     </div>
                 </div>
             </div>
