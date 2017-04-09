@@ -27,7 +27,7 @@ class CommentBox extends React.Component {
     }
 
     fetchComments(bookId, pageNum) {
-        var url = '/Comment/' + bookId + "/p" + pageNum;
+        var url = '/Comments/' + bookId + "/p" + pageNum;
         fetch(url).then(function (response) {
             return response.json();
         }).then((json) => {
