@@ -12,14 +12,14 @@ class CommentItem extends React.Component {
     }
 
     render() {
-        var isCurrentUser = this.props.currentUserId==this.props.comment.userId;
+
         return (
             <div className="comment-item">
                 <div>{this.props.comment.content}</div>
                 <div className="d-flex">
                     <div className="ml-auto">
                         <span>{this.props.comment.userName} {this.props.comment.postTime}</span>
-                        <span>{isCurrentUser?<a href="#" onClick={this.handleRemove}>删除</a>:""}</span>
+                        <span>{this.props.isCurrentUser?<a href="#" onClick={this.handleRemove}>删除</a>}</span>
                     </div>
                 </div>
             </div>

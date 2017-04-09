@@ -9,8 +9,12 @@ class CommentList extends React.Component {
     }
 
     getCommentsStr() {
-        return this.props.comments.map(comment =>
-            <CommentItem key={comment.id} onRemove={this.props.removeComment} comment={comment}/>
+        return this.props.comments.map(comment =>{
+            // console.log(this.props.currentUserId);
+            // console.log(this.props.userId);
+            var isCurrentUser=comment.userId===this.props.currentUserId;
+            return <CommentItem key={comment.id} onRemove={this.props.removeComment} comment={comment} isCurrentUser={isCurrentUser}/>;
+            }
         );
     }
 

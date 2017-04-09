@@ -6775,7 +6775,10 @@ var CommentList = function (_React$Component) {
             var _this2 = this;
 
             return this.props.comments.map(function (comment) {
-                return _react2.default.createElement(_CommentItem2.default, { key: comment.id, onRemove: _this2.props.removeComment, comment: comment });
+                // console.log(this.props.currentUserId);
+                // console.log(this.props.userId);
+                var isCurrentUser = comment.userId === _this2.props.currentUserId;
+                return _react2.default.createElement(_CommentItem2.default, { key: comment.id, onRemove: _this2.props.removeComment, comment: comment, isCurrentUser: isCurrentUser });
             });
         }
     }, {
@@ -10327,90 +10330,10 @@ exports.default = CommentForm;
 
 /***/ }),
 /* 86 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(20);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var CommentItem = function (_React$Component) {
-    _inherits(CommentItem, _React$Component);
-
-    function CommentItem(props) {
-        _classCallCheck(this, CommentItem);
-
-        var _this = _possibleConstructorReturn(this, (CommentItem.__proto__ || Object.getPrototypeOf(CommentItem)).call(this, props));
-
-        _this.handleRemove = _this.handleRemove.bind(_this);
-        return _this;
-    }
-
-    _createClass(CommentItem, [{
-        key: "handleRemove",
-        value: function handleRemove() {
-            this.props.onRemove(this.props.comment.id);
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            var isCurrentUser = this.props.currentUserId == this.props.comment.userId;
-            return _react2.default.createElement(
-                "div",
-                { className: "comment-item" },
-                _react2.default.createElement(
-                    "div",
-                    null,
-                    this.props.comment.content
-                ),
-                _react2.default.createElement(
-                    "div",
-                    { className: "d-flex" },
-                    _react2.default.createElement(
-                        "div",
-                        { className: "ml-auto" },
-                        _react2.default.createElement(
-                            "span",
-                            null,
-                            this.props.comment.userName,
-                            " ",
-                            this.props.comment.postTime
-                        ),
-                        _react2.default.createElement(
-                            "span",
-                            null,
-                            isCurrentUser ? _react2.default.createElement(
-                                "a",
-                                { href: "#", onClick: this.handleRemove },
-                                "\u5220\u9664"
-                            ) : ""
-                        )
-                    )
-                )
-            );
-        }
-    }]);
-
-    return CommentItem;
-}(_react2.default.Component);
-
-exports.default = CommentItem;
+throw new Error("Module build failed: SyntaxError: F:/work/code/2017/4/html/ZeiBook/ZeiBook/wwwroot/js/comment/CommentItem.js: Unexpected token, expected : (22:102)\n\n\u001b[0m \u001b[90m 20 | \u001b[39m                    \u001b[33m<\u001b[39m\u001b[33mdiv\u001b[39m className\u001b[33m=\u001b[39m\u001b[32m\"ml-auto\"\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 21 | \u001b[39m                        \u001b[33m<\u001b[39m\u001b[33mspan\u001b[39m\u001b[33m>\u001b[39m{\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mprops\u001b[33m.\u001b[39mcomment\u001b[33m.\u001b[39muserName} {\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mprops\u001b[33m.\u001b[39mcomment\u001b[33m.\u001b[39mpostTime}\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mspan\u001b[39m\u001b[33m>\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 22 | \u001b[39m                        \u001b[33m<\u001b[39m\u001b[33mspan\u001b[39m\u001b[33m>\u001b[39m{\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mprops\u001b[33m.\u001b[39misCurrentUser\u001b[33m?\u001b[39m\u001b[33m<\u001b[39m\u001b[33ma\u001b[39m href\u001b[33m=\u001b[39m\u001b[32m\"#\"\u001b[39m onClick\u001b[33m=\u001b[39m{\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mhandleRemove}\u001b[33m>\u001b[39m删除\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33ma\u001b[39m\u001b[33m>\u001b[39m}\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mspan\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m    | \u001b[39m                                                                                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 23 | \u001b[39m                    \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 24 | \u001b[39m                \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 25 | \u001b[39m            \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n");
 
 /***/ }),
 /* 87 */
