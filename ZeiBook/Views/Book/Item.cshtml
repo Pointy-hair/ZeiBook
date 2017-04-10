@@ -1,5 +1,7 @@
 ﻿@model Book
 
+@inject UserManager<ApplicationUser> UserManager
+
 @{
     ViewData["Title"] = Model.Name;
 }
@@ -10,6 +12,11 @@
 }
 
 @section Scripts {
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        userId ="@UserManager.GetUserId(User)";
+        bookId =@Model.Id;
+    </script>
     <script src="~/js/bundle.js"></script>
 }
 

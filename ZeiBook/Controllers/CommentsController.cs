@@ -10,11 +10,11 @@ using ZeiBook.Data;
 using ZeiBook.Models.Results;
 using Microsoft.EntityFrameworkCore;
 using ZeiBook.Attributes;
+using ZeiBook.Actions.Comment;
 
 namespace ZeiBook.Controllers
 {
     [Authorize]
-    [AllowCrossSiteJson]
     public class CommentsController : Controller
     {
         private UserManager<ApplicationUser> _userManager;
@@ -63,16 +63,14 @@ namespace ZeiBook.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("Comments/{bookId:int}/p{[pageNum:int}")]
-        public async Task<JsonResult> Index(int bookId, int pageNum, int pageSize=1)
+        [HttpGet("Comments/{bookId:int}/p{pageNum:int}")]
+        public async Task<JsonResult> Index([FromServices]CommentAction commentAction,int bookId, int pageNum, int pageSize=1)
         {
             if (!bookExist(bookId))
             {
                 return Json(null);
             }
-            int skipNum = (pageNum-1) * pageSize;
-            var list = await _context.Comments.Where(t=>t.BookId==bookId)
-                .OrderBy(t=>t.PostTime).Skip(skipNum).Take(pageSize).ToListAsync();
+            var list = await commentAction.GetCommentList(bookId,pageNum,pageSize);
             return Json(list);
         }
 

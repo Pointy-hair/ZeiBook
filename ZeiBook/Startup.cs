@@ -18,6 +18,7 @@ using ZeiBook.Actions.Home;
 using ZeiBook.Actions.Components;
 using ZeiBook.Actions.Search;
 using ZeiBook.Actions.Rank;
+using ZeiBook.Actions.Comment;
 
 namespace ZeiBook
 {
@@ -79,6 +80,7 @@ namespace ZeiBook
             services.AddTransient<DownloadAction>();
             services.AddTransient<SearchAction>();
             services.AddTransient<RankAction>();
+            services.AddTransient<CommentAction>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -30,7 +30,7 @@
                         <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
                     </li>
                     <li class="btn btn-secondary">
-                        <a title="Log out" href="#" onclick="document.getElementById('logoutFrom').submit();">Log out</a>
+                        <a title="Log out" href="#" onclick="document.querySelector('#logoutForm').submit()">Log out</a>
                     </li>
                 </ul>
             </form>
