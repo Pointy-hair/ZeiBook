@@ -1,5 +1,4 @@
 import React from 'react';
-import 'whatwg-fetch';
 import Comment from './Comment';
 import CommentList from './CommentList';
 
@@ -17,20 +16,8 @@ class CommentForm extends React.Component {
         var comment = new Comment();
         comment.content = formData.get("content");
 
-        actionUrl = "/json/addResult.json";
-        fetch(actionUrl).then((response)=> {
-            return response.json();
-        }).then((addResult)=> {
-            this.afterAdd(addResult, comment);
-        });
-    }
+        this.props.addCommentToList(comment);
 
-    afterAdd(addResult, comment) {
-        if (addResult.success==true){
-            this.props.addCommentToList(comment);
-        }else {
-            console.log("gg");
-        }
     }
 
     render() {
