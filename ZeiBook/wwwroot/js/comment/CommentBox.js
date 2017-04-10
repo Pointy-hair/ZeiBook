@@ -1,4 +1,5 @@
 import React from 'react';
+import URLSearchParams from 'url-search-params';
 import CommentForm from './CommentForm';
 import CommentList from './CommentList';
 import Comment from "./Comment";
@@ -21,14 +22,13 @@ class CommentBox extends React.Component {
 
     addComment(comment) {
         var url = '/Comments/Add';
-        axios.post(url, {
-                bookId: this.config.bookId,
-                content: comment.content,
-            }, {
-                maxRedirects: 0,
-                responseType: 'json'
-            }
-        ).then((response) => {
+        var params = new URLSearchParams();
+        params.append('bookId', this.config.bookId);
+        params.append('content', comment.content);
+        axios.post(url, params, {
+            maxRedirects: 0,
+            responseType: 'json'
+        }).then((response) => {
             var json = response.data;
             if (json.success) {
                 this.setState({
@@ -54,6 +54,7 @@ class CommentBox extends React.Component {
 
     removeComment(commentId) {
         var url = '/Comments/Remove/' + commentId;
+
         axios.post(url, {
             responseType: 'json',
             maxRedirects: 0,
