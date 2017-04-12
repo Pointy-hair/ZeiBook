@@ -33,9 +33,7 @@ class CommentBox extends React.Component {
         }).then((response) => {
             var json = response.data;
             if (json.success) {
-                this.setState({
-                    comments: this.state.comments.concat(comment)
-                });
+                changePage(1);
             }
         });
 
