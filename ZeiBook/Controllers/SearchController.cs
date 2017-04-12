@@ -20,6 +20,8 @@ namespace ZeiBook.Controllers
             _context = context;
         }
 
+        [HttpGet("/Search/{keyword}", Order =1)]
+        [HttpGet("/Search/{keyword}/p{pageNum:int}",Order =0)]
         public IActionResult Index(string keyword,int? pageNum,[FromServices]SearchAction action)
         {
             var model = action.GetViewModel(keyword,pageNum??1);

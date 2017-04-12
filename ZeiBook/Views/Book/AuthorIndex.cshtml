@@ -3,39 +3,11 @@
     ViewBag.Title = Model.Author.Name;
 }
 
-
-@section Styles{
-    <link href="~/css/books.css" rel="stylesheet" />
-}
-
 @await Component.InvokeAsync("Category")
 <div class="row">
     <div class="col-md-9">
         <h5>@ViewBag.Title</h5>
-        <ul class="bookList">
-            @foreach (var item in Model.Books)
-            {
-            <li>
-                <div class="bookImage">
-                    <a asp-controller="Book" asp-action="Item" asp-route-id="@item.Id">
-                        <img src="@(item.CoverPath??"/images/pic01.jpg")">
-                    </a>
-                </div>
-                <div class="bookDiv">
-                    <a asp-action="Item" class="book-title" asp-route-id="@item.Id">《@item.Name》txt全集</a>
-                    <div class="bookInfo">
-                        <span>上传日期：@item.UploadTime</span>
-                        <span>分类：@item.Category.Name</span>
-                        <span>大小：@Html.DisplayFileLength(@item.FileLength)</span>
-                        <span>下载次数：@item.DownloadTime</span>
-                    </div>
-                    <p class="intro">
-                        @Html.Raw(item.Description)
-                    </p>
-                </div>
-            </li>
-            }
-        </ul>
+        @Html.Partial("_bookList", Model.Books)
         @Html.Partial("_Page", Model.PageOption)
     </div>
     <div class="col-md-3">

@@ -1,0 +1,25 @@
+﻿@model List<Book>
+<ul class="bookList">
+    @foreach (var item in Model)
+            {
+        <li>
+            <div class="bookImage">
+                <a asp-action="Item" asp-controller="Book" asp-route-id="@item.Id">
+                    <img src="@(item.CoverPath??"/images/pic01.jpg")">
+                </a>
+            </div>
+            <div class="bookDiv">
+                <a class="book-title" asp-action="Item" asp-route-id="@item.Id">《@item.Name》txt全集</a>
+                <div class="bookInfo">
+                    <span>上传日期：@item.UploadTime</span>
+                    <span>作者：<a asp-action="AuthorIndex" asp-route-pageNum="" asp-route-authorName="@item.Writer.Name">@item.Writer.Name</a></span>
+                    <span>大小：@Html.DisplayFileLength(item.FileLength)</span>
+                    <span>下载次数：@item.DownloadTime</span>
+                </div>
+                <p class="intro">
+                    @Html.Raw(item.Description)
+                </p>
+            </div>
+        </li>
+    }
+</ul>

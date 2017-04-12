@@ -12,6 +12,7 @@ using Microsoft.Extensions.Options;
 using ZeiBook.Models;
 using ZeiBook.Models.AccountViewModels;
 using ZeiBook.Services;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace ZeiBook.Controllers
 {
@@ -116,6 +117,7 @@ namespace ZeiBook.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, "user");
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
                     // Send an email with this link
                     //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

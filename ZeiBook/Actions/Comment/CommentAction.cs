@@ -30,7 +30,7 @@ namespace ZeiBook.Actions.Comment
             }
 
             List<CommentItem> comments = new List<CommentItem>();
-            var list = await collection.Include(t => t.User).OrderBy(t => t.PostTime).Skip((pageNum - 1) * pageNum).Take(pageSize).ToListAsync();
+            var list = await collection.Include(t => t.User).OrderBy(t => t.PostTime).Skip((pageNum - 1) * pageSize).Take(pageSize).ToListAsync();
             list.ForEach(t=> {
                 comments.Add(new CommentItem
                 {

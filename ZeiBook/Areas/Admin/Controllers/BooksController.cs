@@ -16,7 +16,7 @@ using ZeiBook.Models.PageViewModels;
 namespace ZeiBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Roles = "admin")]
     public class BooksController : Controller
     {
         private readonly ApplicationDbContext _context;

@@ -34,7 +34,8 @@ namespace ZeiBook.Actions.Search
             return new SearchViewModel
             {
                 Books = list,
-                Keyword = keyword
+                Keyword = keyword,
+                PageOption = po
             };
         }
     }

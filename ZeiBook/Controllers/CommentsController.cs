@@ -64,7 +64,7 @@ namespace ZeiBook.Controllers
 
         [AllowAnonymous]
         [HttpGet("Comments/{bookId:int}/p{pageNum:int}")]
-        public async Task<JsonResult> Index([FromServices]CommentAction commentAction,int bookId, int pageNum, int pageSize=1)
+        public async Task<JsonResult> Index([FromServices]CommentAction commentAction,int bookId, int pageNum, int pageSize=20)
         {
             if (!bookExist(bookId))
             {

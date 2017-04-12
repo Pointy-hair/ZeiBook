@@ -8,10 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using ZeiBook.Data;
 using ZeiBook.Models;
 using ZeiBook.Areas.Admin.Actions.Authors;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ZeiBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles ="admin")]
     public class AuthorsController : Controller
     {
         private readonly ApplicationDbContext _context;

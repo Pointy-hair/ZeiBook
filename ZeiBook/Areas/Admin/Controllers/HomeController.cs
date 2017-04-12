@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace ZeiBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Roles = "admin")]
     public class HomeController : Controller
     {
         // GET: /<controller>/

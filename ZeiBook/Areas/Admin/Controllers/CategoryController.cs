@@ -11,7 +11,7 @@ using ZeiBook.Models;
 namespace ZeiBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Roles = "admin")]
     public class CategoryController : Controller
     {
         private ApplicationDbContext _context;

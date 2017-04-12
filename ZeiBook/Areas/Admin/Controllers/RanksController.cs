@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ZeiBook.Data;
 using ZeiBook.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ZeiBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "admin")]
     public class RanksController : Controller
     {
         private ApplicationDbContext _context;
