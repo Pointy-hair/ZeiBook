@@ -17,7 +17,7 @@ class CommentPage extends React.Component {
         }
 
         return (
-            <ul className="none-style-ul">
+            <ul className="d-flex none-style-ul">
                 {items}
             </ul>
         );
