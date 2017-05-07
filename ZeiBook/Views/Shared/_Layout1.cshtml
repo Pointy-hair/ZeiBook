@@ -10,17 +10,6 @@
     <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <link href="~/css/site-all.css" rel="stylesheet" asp-append-version="true" />
     @RenderSection("Styles", false)
-    <script>
-        window.onload = function() {
-            var btnSearch = document.querySelector("#btnSearch");
-            var inputKeyword = document.querySelector("#keyword");
-            var urlStr = "/Search/"
-
-            btnSearch.addEventListener("click", function () {
-                window.location.href = urlStr + inputKeyword.value;
-            });
-        }
-    </script>
 </head>
 <body>
     <div class="body-content container">
@@ -30,7 +19,7 @@
             <form asp-action="Index" asp-controller="Search" id="searchForm" class="input-group" method="get">
                 <input type="text" name="keyword" class="form-control" id="keyword">
                 <span class="input-group-btn">
-                    <button type="button" id="btnSearch" class="btn btn-secondary">搜索</button>
+                    <button id="btnSearch" class="btn btn-secondary">搜索</button>
                 </span>
             </form>
 

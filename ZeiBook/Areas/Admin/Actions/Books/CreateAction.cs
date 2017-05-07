@@ -64,7 +64,7 @@ namespace ZeiBook.Areas.Admin.Actions.Books
 
         public string GetHtmlDescription(string description)
         {
-            return description.Replace("\n", "<br>");
+            return description!=null?description.Replace("\n", "<br>"):null;
         }
     }
 }

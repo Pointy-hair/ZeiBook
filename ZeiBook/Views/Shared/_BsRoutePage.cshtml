@@ -1,0 +1,43 @@
+﻿@model ZeiBook.Models.Utils.RoutePageOption
+
+@{
+    var pi = Html.ParsePageOption(Model);
+    var routes = Model.Routes;
+}
+@if (Model.PageCount > 1)
+{
+    <nav>
+        <ul class="pagination">
+            @if (pi.RenderStart > 1)
+            {
+                <li class="page-item">
+                    @{
+                        routes["pageNum"] = pi.RenderStart - 1;
+                    }
+                    @Html.RouteLink("<", routes, new { @class = "page-link" })
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <a href="javascript:(void 0)" class="page-link">&laquo;</a>
+                </li>
+            }
+            @for (int i = pi.RenderStart; i <= pi.RenderEnd; i++)
+            {
+                routes["pageNum"] = i;
+                <li class="page-item @(i==Model.PageNum?"active":string.Empty)">
+                    @Html.RouteLink(i.ToString(), routes, new { @class = "page-link" })
+                </li>
+            }
+
+            @if (pi.RenderEnd < Model.PageCount)
+            {
+                routes["pageNum"] = pi.RenderEnd + 1;
+            }
+            <li class="page-item">
+                @Html.RouteLink(">", routes, new { @class = "page-link" })
+            </li>
+        </ul>
+    </nav>
+}

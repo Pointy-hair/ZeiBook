@@ -44,13 +44,14 @@ namespace ZeiBook.Actions.Rank
                 return false;
             }
             var today = DateTime.Now.Date;
-            var startDate = today.Add(-item.Interval);
+            var startDate = today.Add(-item.Interval); //上一个时间间隔
             //获取 特定rank 排名集合
             var list = (from bdi in _context.BookDayInfos
                        where bdi.Day >= startDate && bdi.Day < today
                        group bdi by bdi.BookId into g
                        select new { Id = g.Key, Count = g.Sum(t => t.Count) })
                        .OrderByDescending(t=>t.Count).Take(10);
+            //list -> bookId Count
             //清空 特定rank 结果集合
             _context.BookRankResultItems.RemoveRange(
                 _context.BookRankResultItems.Where(t => t.BookRankId == item.Id));

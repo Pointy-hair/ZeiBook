@@ -20,10 +20,10 @@
             </div>
         </div>
         <div class="form-group row">
-            <label asp-for="Author" class="col-2 col-form-label"></label>
+            <label asp-for="AuthorId" class="col-2 col-form-label"></label>
             <div class="col-10">
-                <input asp-for="Author" class="form-control" />
-                <span asp-validation-for="Author" class="text-danger"></span>
+                <input asp-for="AuthorId" class="form-control" />
+                <span asp-validation-for="AuthorId" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group row">
@@ -38,10 +38,10 @@
         </div>
         <div class="form-group row">
             <label class="col-form-legend col-sm-2">分类</label>
-            <div class="col-sm-10">
+            <div class="col-sm-10 d-flex flex-wrap">
                 @foreach (var item in cateList)
                 {
-                    <div class="form-check">
+                    <div class="form-check mr-2">
                         <label class="form-check-label">
                             @Html.RadioButton("CategoryId", item.Id, Model.CategoryId==item.Id, new { @class = "form-check-input" })
                             @item.Name

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Routing;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +27,11 @@ namespace ZeiBook.Actions.Search
                        select b;
 
             var pageCount = (int)Math.Ceiling(coll.Count() / (double)pageSize);
-            var po = new PageOption { PageCount = pageCount, PageSize = pageSize, PageNum = pageNum };
+            var po = new RoutePageOption { PageCount = pageCount, PageSize = pageSize, PageNum = pageNum };
             if (!po.Valid()) return null;
+
+            po.Routes = new RouteValueDictionary();
+            po.Routes.Add("keyword", keyword);
 
             var skipNum = (pageNum - 1) * pageSize;
             var list = coll.Include(t=>t.Writer).Include(t=>t.Category).OrderBy(b => b.UploadTime).Skip(skipNum).Take(pageSize).ToList();

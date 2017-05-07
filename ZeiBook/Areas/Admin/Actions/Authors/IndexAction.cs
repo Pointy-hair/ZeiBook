@@ -33,21 +33,19 @@ namespace ZeiBook.Areas.Admin.Actions.Authors
                 coll = _context.Authors;
             }
             var pageCount = (int)Math.Ceiling(coll.Count() / (double)pageSize);
-            var po = new SearchPageOption
+            var po = new RoutePageOption
             {
                 PageSize = pageSize,
                 PageCount = pageCount,
                 PageNum = pageNum,
-                ActionName = "Index",
-                ControllerName = "Authors",
             };
             if (!po.Valid()) return null;
             var list = await coll.OrderByDescending(t => t.Name)
                 .Skip((pageNum - 1) * pageSize).Take(pageSize).ToListAsync();
 
             po.Routes = new RouteValueDictionary();
-            po.Routes.Add("pageNum", pageNum);
-            po.Routes.Add("authorName", authorName);
+            po.Routes.Add("pagenum", pageNum);
+            po.Routes.Add("authorname", authorName);
             return new Models.AuthorIndexViewModel
             {
                 Authors = list,

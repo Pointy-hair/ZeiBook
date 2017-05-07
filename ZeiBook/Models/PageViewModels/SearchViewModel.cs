@@ -10,6 +10,6 @@ namespace ZeiBook.Models.PageViewModels
     {
         public string Keyword { get; set; }
         public List<Book> Books { get; set; }
-        public PageOption PageOption { get; set; }
+        public RoutePageOption PageOption { get; set; }
     }
 }

@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace ZeiBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles ="admin")]
+    [Authorize(Roles = "admin")]
     public class AuthorsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -26,9 +26,10 @@ namespace ZeiBook.Areas.Admin.Controllers
         // GET: Admin/Authors
         [HttpGet("Admin/Authors", Order = 1)]
         [HttpGet("Admin/Authors/p{pageNum}", Order = 0)]
-        public async Task<IActionResult> Index(int? pageNum, string authorName, [FromServices]IndexAction action)
+        public async Task<IActionResult> Index(int? pageNum, string authorName, [FromServices]IndexAction action,int? pageSize)
         {
-            return View(await action.GetViewModelAsync(pageNum ?? 1, authorName));
+           
+            return View(await action.GetViewModelAsync(pageNum ?? 1, authorName, pageSize??50));
         }
 
         // GET: Admin/Authors/Details/5
@@ -143,8 +144,11 @@ namespace ZeiBook.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var author = await _context.Authors.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Authors.Remove(author);
-            await _context.SaveChangesAsync();
+            if (author != null)
+            {
+                _context.Authors.Remove(author);
+                await _context.SaveChangesAsync();
+            }
             return RedirectToAction("Index");
         }
 

@@ -29,10 +29,10 @@ namespace ZeiBook.Areas.Admin.Controllers
         // GET: Admin/Books
         [HttpGet("Admin/Books",Order =1)]
         [HttpGet("Admin/Books/p{pageNum}", Order =0)]
-        public async Task<IActionResult> Index(int? pageNum, string bookName, [FromServices]IndexAction action)
+        public async Task<IActionResult> Index(int? pageNum, string bookName, [FromServices]IndexAction action,int? pageSize)
         {
             
-            var model = await action.GetViewModelAsync(pageNum??1, bookName);
+            var model = await action.GetViewModelAsync(pageNum??1, bookName,pageSize??50);
             return View(model);
         }
 
@@ -66,14 +66,18 @@ namespace ZeiBook.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Author,CategoryId,Description,Gender,UploadTime")] BookItemViewModel book,
+        public async Task<IActionResult> Create([Bind("Id,Name,Author,CategoryId,Description,Gender,UploadTime")] BookItemViewModel book1,
             IFormFile bookFile,
             [FromServices]CreateAction createAction)
         {
             if (ModelState.IsValid)
             {
                 //authorId
-                var authorItem = GetAuthor(book.Author);
+                var authorItem = GetAuthor(book1.Author);
+                if (authorItem == null) {
+                    ModelState.AddModelError(String.Empty,"作者不存在");
+                    return View(book1); }
+                var book = book1.GetBook();
                 book.AuthorId = authorItem.Id;
 
                 var path = createAction.SaveFile(bookFile);
@@ -90,7 +94,7 @@ namespace ZeiBook.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(book);
+            return View(book1);
         }
 
         // GET: Admin/Books/Edit/5

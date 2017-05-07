@@ -26,19 +26,19 @@
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" asp-action="Index" asp-controller="Books" asp-area="Admin">Books</a>
+                    <a class="nav-link" asp-action="Index" asp-route-pageNum="" asp-controller="Books" asp-area="Admin">Books</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-action="Index" asp-controller="Category" asp-area="Admin">Category</a>
+                    <a class="nav-link" asp-action="Index" asp-route-pageNum="" asp-controller="Category" asp-area="Admin">Category</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-action="Index" asp-controller="Ranks" asp-area="Admin">Ranks</a>
+                    <a class="nav-link" asp-action="Index" asp-route-pageNum="" asp-controller="Ranks" asp-area="Admin">Ranks</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-action="Index" asp-controller="Authors" asp-area="Admin">Authors</a>
+                    <a class="nav-link" asp-action="Index" asp-route-pageNum="" asp-controller="Authors" asp-area="Admin">Authors</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-action="Index" asp-controller="Roles" asp-area="Admin">Roles</a>
+                    <a class="nav-link" asp-action="Index" asp-route-pageNum="" asp-controller="Roles" asp-area="Admin">Roles</a>
                 </li>
             </ul>
             @Html.Partial("_LoginPartial")

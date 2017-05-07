@@ -10,6 +10,6 @@ namespace ZeiBook.Areas.Admin.Models
     public class AuthorIndexViewModel
     {
         public List<Author> Authors { get; set; }
-        public SearchPageOption PageOption { get; set; }
+        public PageOption PageOption { get; set; }
     }
 }
