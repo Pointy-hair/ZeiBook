@@ -8,75 +8,7 @@
 
 <div>
     <h4>Book</h4>
-    <table class="table-responsive">
-        <tr>
-            <td>
-                @Html.DisplayNameFor(model => model.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.Name)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.DisplayNameFor(model => model.Writer)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.Writer)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.DisplayNameFor(model => model.UploadTime)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.UploadTime)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.DisplayNameFor(model => model.Path)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.Path)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.DisplayNameFor(model => model.Description)
-            </td>
-            <td>
-                @Html.Raw(Model.Description)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                下载数
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.DownloadTime)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                文件大小
-            </td>
-            <td>
-                @Html.DisplayFileLength(Model.FileLength)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                封面
-            </td>
-            <td>
-                @if (Model.CoverPath != null)
-                {
-                    <img src="@Model.CoverPath" />
-                }
-            </td>
-        </tr>
-    </table>
+    @await Html.PartialAsync("_bookTable", Model)
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |

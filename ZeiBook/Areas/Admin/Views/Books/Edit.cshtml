@@ -1,4 +1,4 @@
-﻿@model Book
+﻿@model BookItemViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -20,10 +20,10 @@
             </div>
         </div>
         <div class="form-group row">
-            <label asp-for="AuthorId" class="col-2 col-form-label"></label>
+            <label asp-for="Author" class="col-2 col-form-label"></label>
             <div class="col-10">
-                <input asp-for="AuthorId" class="form-control" />
-                <span asp-validation-for="AuthorId" class="text-danger"></span>
+                <input asp-for="Author" class="form-control" />
+                <span asp-validation-for="Author" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group row">

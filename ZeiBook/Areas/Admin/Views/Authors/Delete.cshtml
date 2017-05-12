@@ -10,16 +10,8 @@
 
 <div>
     <h4>Author</h4>
-    <table class="table-responsive">
-        <tr>
-            <td>
-                @Html.DisplayNameFor(model => model.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.Name)
-            </td>
-        </tr>
-    </table>
+    @await Html.PartialAsync("_authorTable",Model)
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 </div>
 
 <form asp-action="Delete">

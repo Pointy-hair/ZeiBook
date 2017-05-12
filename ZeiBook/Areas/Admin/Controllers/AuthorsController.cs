@@ -61,10 +61,15 @@ namespace ZeiBook.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Author author)
+        public async Task<IActionResult> Create(Author author)
         {
             if (ModelState.IsValid)
             {
+                if (AuthorExists(author.Name))
+                {
+                    ModelState.AddModelError(String.Empty,"作者名不能重复");
+                    return View(author);
+                }
                 _context.Add(author);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -146,6 +151,11 @@ namespace ZeiBook.Areas.Admin.Controllers
             var author = await _context.Authors.SingleOrDefaultAsync(m => m.Id == id);
             if (author != null)
             {
+                if (AuthorBookExists(author.Id))
+                {
+                    ModelState.AddModelError(string.Empty, "该作者还有书籍未删除，请先删除书籍");
+                    return View(author);
+                }
                 _context.Authors.Remove(author);
                 await _context.SaveChangesAsync();
             }
@@ -155,6 +165,16 @@ namespace ZeiBook.Areas.Admin.Controllers
         private bool AuthorExists(int id)
         {
             return _context.Authors.Any(e => e.Id == id);
+        }
+
+        private bool AuthorExists(string name)
+        {
+            return _context.Authors.Any(e => e.Name == name);
+        }
+
+        private bool AuthorBookExists(int id)
+        {
+            return _context.Books.Any(t => t.AuthorId == id);
         }
     }
 }

@@ -1,0 +1,11 @@
+﻿@model Author
+<table class="table-responsive">
+    <tr>
+        <td>
+            作者
+        </td>
+        <td>
+            <a asp-controller="Book" asp-area="" asp-action="AuthorIndex" asp-route-authorName="@Model.Name" asp-route-pageNum="">@Html.DisplayFor(model => Model.Name)</a>
+        </td>
+    </tr>
+</table>

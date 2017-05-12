@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using ZeiBook.Areas.Admin.Actions.Books;
 using Microsoft.AspNetCore.Routing;
-using ZeiBook.Models.PageViewModels;
+using ZeiBook.Areas.Admin.Models;
 
 namespace ZeiBook.Areas.Admin.Controllers
 {
@@ -44,8 +44,7 @@ namespace ZeiBook.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var book = await _context.Books
-                .SingleOrDefaultAsync(m => m.Id == id);
+            var book = await GetBookWithAuthorAndCategory((int)id);
             if (book == null)
             {
                 return NotFound();
@@ -100,14 +99,14 @@ namespace ZeiBook.Areas.Admin.Controllers
         // GET: Admin/Books/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            ViewData["cateList"] = _context.Categories.ToList();
+            ViewData["cateList"] = await _context.Categories.ToListAsync();
 
             if (id == null)
             {
                 return NotFound();
             }
 
-            var book = await _context.Books.SingleOrDefaultAsync(m => m.Id == id);
+            var book = GetBookItem((int)id);
             if (book == null)
             {
                 return NotFound();
@@ -176,8 +175,7 @@ namespace ZeiBook.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var book = await _context.Books
-                .SingleOrDefaultAsync(m => m.Id == id);
+            var book = await GetBookWithAuthorAndCategory((int)id);
             if (book == null)
             {
                 return NotFound();
@@ -213,6 +211,21 @@ namespace ZeiBook.Areas.Admin.Controllers
             }
             return authorItem;
         }
+
+        private BookItemViewModel GetBookItem(int bookId)
+        {
+            var book = _context.Books.Include(t=>t.Writer).SingleOrDefault(t=>t.Id==bookId);
+            if (book == null) return null;
+            BookItemViewModel model = new BookItemViewModel(book);
+            model.Author = book.Writer.Name;
+            return model;
+        }
+
+        private Task<Book> GetBookWithAuthorAndCategory(int id)
+        {
+            return _context.Books.Include(t=>t.Writer).Include(t=>t.Category).SingleOrDefaultAsync(t => t.Id == id);
+        }
+
 
     }
 }
