@@ -31,7 +31,7 @@ namespace ZeiBook.Areas.Admin.Actions.Books
                 coll = _context.Books;
             }
             var pageCount = (int)Math.Ceiling(coll.Count() / (double)pageSize);
-            var po = new SearchPageOption
+            var po = new RoutePageOption
             {
                 PageSize = pageSize,
                 PageCount = pageCount,
@@ -41,11 +41,9 @@ namespace ZeiBook.Areas.Admin.Actions.Books
             var list = await coll.OrderByDescending(t => t.UploadTime)
                 .Skip((pageNum - 1) * pageSize).Take(pageSize).ToListAsync();
 
-            var routes = new RouteValueDictionary();
-            routes.Add("bookName", bookName);
-            po.Routes = routes;
-            po.ActionName = "Index";
-            po.ControllerName = "Books";
+            po.Routes = new RouteValueDictionary();
+            po.Routes.Add("pagenum", pageNum);
+            po.Routes.Add("bookName", bookName);
 
             return new BookIndexViewModel
             {

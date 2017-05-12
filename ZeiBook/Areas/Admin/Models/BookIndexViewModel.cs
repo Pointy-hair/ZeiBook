@@ -9,7 +9,7 @@ namespace ZeiBook.Areas.Admin.Models
 {
     public class BookIndexViewModel
     {
-        public SearchPageOption PageOption { get; set; }
+        public RoutePageOption PageOption { get; set; }
         public List<Book> Books { get; set; }
     }
 }
