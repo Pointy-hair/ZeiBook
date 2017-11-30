@@ -1,6 +1,6 @@
 # ZeiBook
 
-2017年4月5月，模仿 www.zei8.org 做的网站。
+2017年4月5月，模仿 www.zei8.org 做的网站。用作毕业设计。
 www.zei8.org 现已关闭。
 
 
